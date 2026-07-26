@@ -1,14 +1,27 @@
 # Epic Tech AI — Full SOTA Super-Agent
 
-**1000x autonomous agent stack: every skill, every specialist, max reasoning — secure by default.**
+**A system designed to outperform any single frontier-lab model on real work — every skill, every specialist, verification before ship, secure by default.**
 
 | | |
 |---|---|
+| **Launch (GitHub Pages)** | **[epictechai.github.io/epic-tech-ai-agent](https://epictechai.github.io/epic-tech-ai-agent/)** |
 | GitHub | [github.com/epictechai/epic-tech-ai-agent](https://github.com/epictechai/epic-tech-ai-agent) |
 | Org | [github.com/epictechai](https://github.com/epictechai) |
 | X | [x.com/EpicTechAI](https://x.com/EpicTechAI) |
 | Email | epictechai@gmail.com |
 
+### Why Epic > a raw frontier chat model
+
+| Single lab model | Epic system |
+|---|---|
+| One reasoning pass | Multi-agent + `@critic` loop (`epic-frontier`) |
+| Session amnesia | Project memory brain |
+| Talks about code | Runs your stack (shell, browser, media) |
+| Same weights for all jobs | Routes Opus / Sonnet / Gemini / Haiku |
+| Draft text | Verify → ship |
+| Keys in prompts | Executor Gateway |
+
+Mechanism is documented in `.kortix/opencode/skills/epic-frontier/` — not slogans.
 ---
 
 ## What you get

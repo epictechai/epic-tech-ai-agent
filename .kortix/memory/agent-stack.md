@@ -38,6 +38,10 @@ Change models only in `opencode.jsonc` + agent frontmatter.
 
 ## OS skills
 
+- `epic-frontier` — doctrine to outperform any single frontier model (ensemble, critic, verify)
+- Public launcher: https://epictechai.github.io/epic-tech-ai-agent/
+
+
 - `epic-os` — mission loop
 - `epic-powers` — **master skill matrix** (every GKW + platform skill)
 - Platform: kortix-executor, kortix-system, kortix-memory, kortix-slack, agent-browser

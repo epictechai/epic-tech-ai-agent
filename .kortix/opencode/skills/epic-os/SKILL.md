@@ -13,11 +13,15 @@ loops stay stable; only model IDs swap in config.
 
 ```
 memory.view(.kortix/memory) → MEMORY.md → relevant subfiles
+→ load epic-powers (+ epic-frontier on hard/competitive work)
 → load domain skills (don't improvise a skill that exists)
 → if external SaaS: load kortix-executor
 → if platform/CR/triggers: load kortix-system
-→ classify → plan → execute (parallel) → verify → persist → report
+→ classify → plan → execute (parallel) → critic/verify → persist → report
 ```
+
+On hard work, follow **`epic-frontier`**: multi-model routing, adversarial
+critique before final, verification ladder, no unverified claims.
 
 ## Classify → route
 

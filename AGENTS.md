@@ -11,13 +11,14 @@ These instructions apply to every agent in this project.
 - Do not reintroduce legacy names (Smoke, Jarvis) in user-facing copy.
 - New agents, skills, docs, and apps carry Epic Tech AI branding.
 
-## Default agent — full power
+## Default agent — full power (system > single model)
 
 - Primary: **`epic`** (Opus 4.8 max) — orchestrates everything.
 - Alias: `kortix` (same mandate).
 - Specialists: `architect` `builder` `researcher` `critic` `ops` `designer` `writer` `analyst` `counsel` `creator` `seller` `product`
-- OS skills: **`epic-os`** + **`epic-powers`** (master skill matrix — load on non-trivial work).
+- OS skills: **`epic-os`** + **`epic-powers`** + **`epic-frontier`** (how we beat solo frontier models).
 - Full-power command: **`/anything`**
+- Public launcher: https://epictechai.github.io/epic-tech-ai-agent/
 
 ## You have every skill
 
