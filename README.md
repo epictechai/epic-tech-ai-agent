@@ -99,20 +99,29 @@ kortix.toml
 
 ---
 
-## Quick start — local
+## One-click launch — local
+
+| OS | What to do |
+|---|---|
+| **macOS** | Double-click `LAUNCH.command` |
+| **Linux / Mac terminal** | `./LAUNCH.sh` |
+| **Windows** | Double-click `LAUNCH.bat` (or `LAUNCH.ps1`) |
+| **npm** | `npm start` |
+
+That starts the **Epic** web UI (default agent, full SOTA) and opens your browser.
 
 ```bash
 git clone https://github.com/epictechai/epic-tech-ai-agent.git
 cd epic-tech-ai-agent
-npm run setup          # link .opencode, install tool deps, validate config
-npm run doctor         # agents / commands / skills health check
-npm run agent          # interactive TUI (default agent: epic)
-# or
-npm run agent:web      # browser UI on :4096
-npm run agent:run -- "Build a landing page for Epic Tech AI"
+chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh   # first time only
+./LAUNCH.sh                    # web UI (one-click)
+./LAUNCH.sh tui                # terminal UI
+./LAUNCH.sh doctor             # health check
+npm start                      # same as ./LAUNCH.sh
+npm run agent:run -- "your task"
 ```
 
-Requires [OpenCode](https://opencode.ai/docs) (`opencode` on PATH) and a model provider
+Requires [OpenCode](https://opencode.ai/docs) on PATH and a model provider
 (`opencode providers` / Machine Kortix gateway credentials).
 
 ## Quick start — Machine

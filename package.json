@@ -1,16 +1,18 @@
 {
   "name": "epic-tech-ai-agent",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Epic Tech AI — full SOTA super-agent stack. github.com/epictechai · x.com/EpicTechAI",
+  "description": "Epic Tech AI — full SOTA super-agent. One-click: ./LAUNCH.sh · github.com/epictechai · x.com/EpicTechAI",
   "scripts": {
-    "setup": "bash scripts/setup-local.sh",
-    "agent": "bash scripts/run-local.sh",
-    "agent:tui": "bash scripts/run-local.sh tui",
-    "agent:web": "bash scripts/run-local.sh web",
-    "agent:serve": "bash scripts/run-local.sh serve",
+    "start": "bash LAUNCH.sh web",
+    "launch": "bash LAUNCH.sh web",
+    "agent": "bash LAUNCH.sh web",
+    "agent:web": "bash LAUNCH.sh web",
+    "agent:tui": "bash LAUNCH.sh tui",
+    "agent:serve": "bash LAUNCH.sh serve",
     "agent:run": "bash scripts/run-local.sh run",
-    "doctor": "bash scripts/run-local.sh doctor",
+    "setup": "bash scripts/setup-local.sh",
+    "doctor": "bash LAUNCH.sh doctor",
     "push": "git push origin main"
   },
   "engines": {
