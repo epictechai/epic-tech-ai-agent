@@ -131,30 +131,31 @@ kortix.toml
 
 Software is **MIT**. Site use is subject to Terms + AUP. AI output is **not** professional advice.
 
-## One-click launch — local
+## Launch
 
-| OS | What to do |
-|---|---|
-| **macOS** | Double-click `LAUNCH.command` |
-| **Linux / Mac terminal** | `./LAUNCH.sh` |
-| **Windows** | Double-click `LAUNCH.bat` (or `LAUNCH.ps1`) |
-| **npm** | `npm start` |
+### Windows (one file)
+1. Download [DO_EVERYTHING.bat](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat)
+2. Save to `C:\Users\epict\EpicTechAI`
+3. Double-click
 
-That starts the **Epic** web UI (default agent, full SOTA) and opens your browser.
+Or: [download page](https://epictechai.github.io/epic-tech-ai-agent/download/) · [all release assets](https://github.com/epictechai/epic-tech-ai-agent/releases/tag/windows-latest)
 
+### macOS / Linux
 ```bash
 git clone https://github.com/epictechai/epic-tech-ai-agent.git
 cd epic-tech-ai-agent
-chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh   # first time only
-./LAUNCH.sh                    # web UI (one-click)
-./LAUNCH.sh tui                # terminal UI
-./LAUNCH.sh doctor             # health check
-npm start                      # same as ./LAUNCH.sh
-npm run agent:run -- "your task"
+chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh
+./LAUNCH.sh
 ```
 
-Requires [OpenCode](https://opencode.ai/docs) on PATH and a model provider
-(`opencode providers` / Machine Kortix gateway credentials).
+### Repo layout (clean)
+```
+DO_EVERYTHING.bat     # Windows master installer
+LAUNCH.bat / .sh      # start agent
+windows/              # Windows scripts + README
+docs/                 # GitHub Pages site
+.kortix/              # agents, skills, memory
+```
 
 ## Quick start — Machine
 
