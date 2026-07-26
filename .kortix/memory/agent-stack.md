@@ -1,51 +1,56 @@
-# Agent stack (SOTA wiring)
+# Agent stack — FULL SOTA (1000x)
 
 Updated: 2026-07-26
 
 ## Design principle
 
 **Roles and loops are stable; model IDs are swappable.**  
-Change models only in:
+Change models only in `opencode.jsonc` + agent frontmatter.
 
-- `.kortix/opencode/opencode.jsonc` (`model`, `small_model`, `agent.*.model`)
-- Agent frontmatter `model:` lines
+## Primary
 
-Do not bake model names into skill prose except as examples.
-
-## Default models (Kortix gateway)
-
-| Agent | Model | Why |
+| Agent | Model | Notes |
 |---|---|---|
-| `epic`, `architect`, `plan` | `kortix/anthropic/claude-opus-4.8` | Deep reasoning / orchestration |
-| `builder`, `critic`, `ops`, `general`, `build` | `kortix/anthropic/claude-sonnet-5` | Fast strong implementation/review |
-| `researcher` | `kortix/google/gemini-3.1-pro-preview` | Long-context multi-source research |
-| `explore`, titles (`small_model`) | `kortix/anthropic/claude-haiku-4.5` | Cheap/fast reads |
+| `epic` | `kortix/anthropic/claude-opus-4.8` variant **max** | Full orchestrator — every skill |
+| `kortix` | same | Legacy alias |
 
-`subagent_depth = 2` so orchestrator can nest light specialist chains.
+## Specialists
 
-## Core loop (`epic-os`)
+| Agent | Model | Domain |
+|---|---|---|
+| `architect` | opus-4.8 high | System design |
+| `builder` | sonnet-5 high | Implementation |
+| `researcher` | gemini-3.1-pro-preview | Deep research |
+| `critic` | sonnet-5 high | Adversarial QA |
+| `ops` | sonnet-5 | Integrations / deploys |
+| `designer` | sonnet-5 | Visual / brand / UI |
+| `writer` | sonnet-5 | Prose / copy / docs |
+| `analyst` | sonnet-5 high | Data / finance |
+| `counsel` | opus-4.8 high | Legal / risk |
+| `creator` | sonnet-5 | Media gen |
+| `seller` | sonnet-5 | GTM / sales |
+| `product` | sonnet-5 | PRD / roadmap |
+| `explore` | haiku-4.5 | Fast codebase |
+| `general` | sonnet-5 high | Parallel units |
+| `memory-reflector` | sonnet-5 | Memory cron |
 
-```
-memory boot → skills → classify → plan
-→ parallel tools/subagents → verify → persist → report
-```
+`subagent_depth = 3` for deep fan-out.
+
+## OS skills
+
+- `epic-os` — mission loop
+- `epic-powers` — **master skill matrix** (every GKW + platform skill)
+- Platform: kortix-executor, kortix-system, kortix-memory, kortix-slack, agent-browser
+- 60+ domain skills under `GENERAL-KNOWLEDGE-WORKER/`
 
 ## Commands
 
-| Command | Purpose |
-|---|---|
-| `/ship` | verify → commit → push → `kortix cr open` |
-| `/build` | architect (if needed) → builder → verify → optional critic |
-| `/review` | `@critic` on diff |
-| `/research` | `@researcher` + cross-check |
-| `/ops` | Executor integrations |
-| `/memory` | curate brain + memory CR |
-| `/supercharge` | audit/upgrade agent stack |
+`/anything` `/ship` `/build` `/review` `/research` `/ops` `/memory` `/supercharge`  
+`/design` `/write` `/analyze` `/legal` `/create` `/sell` `/site`
 
-## Upgrade checklist
+## Upgrade path
 
-1. Run `opencode models` and pick stronger IDs when available.
-2. Swap IDs in `opencode.jsonc` + frontmatter only.
-3. Keep `epic-os` as the behavioral source of truth.
-4. Add skills/commands for repeated rituals rather than growing one mega-prompt.
-5. Land via CR; new sessions boot from `main`.
+1. `opencode models` → pick stronger IDs  
+2. Swap only config/frontmatter  
+3. Add skills for new domains; keep epic as router  
+4. Push to https://github.com/epictechai/epic-tech-ai-agent  

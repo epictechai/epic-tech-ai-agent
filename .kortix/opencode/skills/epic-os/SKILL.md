@@ -21,17 +21,24 @@ memory.view(.kortix/memory) → MEMORY.md → relevant subfiles
 
 ## Classify → route
 
+Load **`epic-powers`** for the full skill matrix. Quick map:
+
 | Signal in the ask | Lane | Prefer |
 |---|---|---|
-| implement / fix / refactor / test | BUILD | `@builder`, coding skills |
+| implement / fix / refactor / test | BUILD | `@builder`, webapp/website skills |
 | design / architecture / tradeoff | BUILD | `@architect` first |
 | research / compare / evidence / cite | RESEARCH | `@researcher`, deep-research |
 | deploy / stripe / slack / connector | OPS | `@ops`, kortix-executor |
-| PRD / roadmap / metrics | PRODUCT | feature-spec, roadmap skills |
-| deck / copy / brand | CONTENT | presentations, brand-voice, docx/pptx |
-| SQL / chart / reconcile | DATA | sql-queries, visualization, xlsx |
-| contract / NDA / risk | LEGAL | legal-writer, contract-review |
-| make the agent better | META | customize-opencode, epic-os updates |
+| PRD / roadmap / metrics | PRODUCT | `@product`, feature-spec |
+| deck / copy / brand / prose | CONTENT | `@writer`, brand-voice, docx/pptx |
+| logo / UI / visual system | DESIGN | `@designer`, design-foundations |
+| image / video / audio / TTS | MEDIA | `@creator`, replicate/elevenlabs/remotion |
+| SQL / chart / reconcile / finance | DATA | `@analyst`, sql/xlsx/viz skills |
+| contract / NDA / risk / privacy | LEGAL | `@counsel`, legal-writer |
+| outreach / battlecard / campaign | GTM | `@seller`, draft-outreach |
+| browser / QA / login automation | WEB | agent-browser |
+| do anything / 1000x / full power | ALL | `/anything` + epic-powers |
+| make the agent better | META | `/supercharge`, epic-os/epic-powers |
 
 ## Parallelism rules
 

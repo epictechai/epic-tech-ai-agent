@@ -1,79 +1,121 @@
 {
-  // Epic Tech AI — OpenCode runtime
+  // Epic Tech AI — FULL SOTA OpenCode runtime
   // Brand: https://github.com/epictechai · https://x.com/EpicTechAI · epictechai@gmail.com
   // Docs: https://opencode.ai/docs/
   "$schema": "https://opencode.ai/config.json",
   "theme": "system",
   "username": "Epic Tech AI",
 
-  // Default primary = Epic super-agent (SOTA orchestrator)
+  // Default primary = Epic super-agent (max power orchestrator)
   "default_agent": "epic",
 
-  // SOTA defaults — swap IDs here when newer models land; agent roles stay stable.
-  // Primary reasoning: Claude Opus 4.8 via Kortix gateway
+  // SOTA defaults — swap IDs here when newer models land; roles stay stable.
   "model": "kortix/anthropic/claude-opus-4.8",
-  // Cheap/fast path for titles & light tasks
   "small_model": "kortix/anthropic/claude-haiku-4.5",
 
-  // Allow nested specialist fan-out (architect → builder, etc.)
-  "subagent_depth": 2,
+  // Deep specialist trees: epic → specialist → explore/general
+  "subagent_depth": 3,
 
-  // Machine sandboxes are isolated VMs on ephemeral branches.
-  // Global allow; agents tighten bash/mcp as needed.
+  // Full power in isolated sandboxes
   "permission": "allow",
 
-  // Keep long missions coherent
+  // Long autonomous missions stay coherent
   "compaction": {
     "auto": true,
-    "tail_turns": 4,
-    "prune": true
+    "tail_turns": 6,
+    "prune": true,
+    "preserve_recent_tokens": 12000
   },
 
   "tool_output": {
-    "max_lines": 2000,
-    "max_bytes": 51200
+    "max_lines": 4000,
+    "max_bytes": 102400
   },
 
-  // Project-wide rules (brand + operating contract)
+  "experimental": {
+    "batch_tool": true,
+    "mcp_timeout": 60000
+  },
+
+  // Project-wide rules
   "instructions": ["AGENTS.md"],
 
-  // Built-in agent tweaks + explicit epic wiring
+  // Explicit skill roots (GKW + platform + epic)
+  "skills": {
+    "paths": [
+      ".kortix/opencode/skills",
+      ".kortix/opencode/skills/GENERAL-KNOWLEDGE-WORKER"
+    ]
+  },
+
+  // Full roster — every specialist on SOTA models
   "agent": {
     "epic": {
       "model": "kortix/anthropic/claude-opus-4.8",
-      "variant": "high"
+      "variant": "max"
     },
     "architect": {
-      "model": "kortix/anthropic/claude-opus-4.8"
+      "model": "kortix/anthropic/claude-opus-4.8",
+      "variant": "high"
     },
     "builder": {
-      "model": "kortix/anthropic/claude-sonnet-5"
+      "model": "kortix/anthropic/claude-sonnet-5",
+      "variant": "high"
     },
     "researcher": {
       "model": "kortix/google/gemini-3.1-pro-preview"
     },
     "critic": {
-      "model": "kortix/anthropic/claude-sonnet-5"
+      "model": "kortix/anthropic/claude-sonnet-5",
+      "variant": "high"
     },
     "ops": {
       "model": "kortix/anthropic/claude-sonnet-5"
     },
-    // Faster explore; keep general strong
+    "designer": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "writer": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "analyst": {
+      "model": "kortix/anthropic/claude-sonnet-5",
+      "variant": "high"
+    },
+    "counsel": {
+      "model": "kortix/anthropic/claude-opus-4.8",
+      "variant": "high"
+    },
+    "creator": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "seller": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "product": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
     "explore": {
       "model": "kortix/anthropic/claude-haiku-4.5"
     },
     "general": {
-      "model": "kortix/anthropic/claude-sonnet-5"
+      "model": "kortix/anthropic/claude-sonnet-5",
+      "variant": "high"
     },
     "plan": {
-      "model": "kortix/anthropic/claude-opus-4.8"
+      "model": "kortix/anthropic/claude-opus-4.8",
+      "variant": "high"
     },
     "build": {
+      "model": "kortix/anthropic/claude-sonnet-5",
+      "variant": "high"
+    },
+    "memory-reflector": {
       "model": "kortix/anthropic/claude-sonnet-5"
     }
   },
 
-  // Provider-level reasoning defaults (future-proof knobs)
+  // Max reasoning budgets for flagship models
   "provider": {
     "kortix": {
       "models": {
@@ -90,15 +132,22 @@
         "anthropic/claude-sonnet-5": {
           "variants": {
             "high": {
-              "thinking": { "type": "enabled", "budgetTokens": 10000 }
+              "thinking": { "type": "enabled", "budgetTokens": 12000 }
+            },
+            "max": {
+              "thinking": { "type": "enabled", "budgetTokens": 20000 }
             }
+          }
+        },
+        "google/gemini-3.1-pro-preview": {
+          "variants": {
+            "high": {},
+            "max": {}
           }
         }
       }
     }
   },
 
-  // Local plugins. tools/ + plugins/ auto-discovered.
-  // PTY = long-running & interactive shells.
   "plugin": ["./pty/pty-tools.ts"]
 }
