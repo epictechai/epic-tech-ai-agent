@@ -1,0 +1,93 @@
+kortix_version = 1
+
+[project]
+name = "Epic Tech AI"
+description = "Epic Tech AI — SOTA autonomous agent platform. Secure Executor, project memory, Stripe-ready. github.com/epictechai · x.com/EpicTechAI"
+
+[runtime]
+root = ".opencode"
+
+[env]
+required = []
+optional = [
+  "STRIPE_API_KEY",
+  "GROQ_API_KEY",
+  "REPLICATE_API_TOKEN",
+  "ELEVENLABS_API_KEY",
+  "FIRECRAWL_API_KEY",
+  "TAVILY_API_KEY",
+]
+
+# ---------------------------------------------------------------------------
+# Triggers
+# ---------------------------------------------------------------------------
+
+[[triggers]]
+slug = "memory-reflector"
+name = "Memory Reflector"
+description = "Daily curation of .kortix/memory/ — the Epic Tech AI project brain"
+enabled = true
+agent = "memory-reflector"
+cron = "0 3 * * *"
+prompt = """
+You are the memory-reflector for Epic Tech AI (github.com/epictechai, x.com/EpicTechAI).
+Load the kortix-memory skill and run a full reflection cycle.
+Survey recent git history on main, merged CRs, and memory history.
+Apply the rubric. CRUD via the memory tool only.
+If anything durable changed, commit and open a single CR titled `memory: …`.
+If nothing is worth remembering, exit silently with no CR.
+"""
+
+# ---------------------------------------------------------------------------
+# Apps (experimental — enable when ready to deploy)
+# ---------------------------------------------------------------------------
+
+[[apps]]
+slug = "test-site6"
+name = "test-site6"
+enabled = true
+domains = []
+
+[apps.source]
+type = "git"
+repo = "https://github.com/templatecookie/poco-html"
+branch = "master"
+
+# ---------------------------------------------------------------------------
+# Connectors — secrets live in the Machine dashboard, never in git
+# ---------------------------------------------------------------------------
+
+[[connectors]]
+slug = "github"
+provider = "pipedream"
+credential = "shared"
+app = "github"
+account = "default"
+
+[[connectors]]
+slug = "supabase"
+provider = "pipedream"
+credential = "shared"
+app = "supabase"
+account = "default"
+
+[[connectors]]
+slug = "vercel_token_auth"
+provider = "pipedream"
+credential = "shared"
+app = "vercel_token_auth"
+account = "default"
+
+[[connectors]]
+slug = "slack_v2"
+provider = "pipedream"
+credential = "shared"
+app = "slack_v2"
+account = "default"
+
+[[connectors]]
+slug = "stripe"
+provider = "pipedream"
+credential = "shared"
+app = "stripe"
+account = "default"

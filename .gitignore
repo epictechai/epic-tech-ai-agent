@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+uploads/
+volume/
+*.log
+.kortix/opencode/node_modules/
+.kortix/opencode/bun.lock
+.kortix/opencode/package-lock.json

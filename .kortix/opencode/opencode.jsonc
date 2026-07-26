@@ -1,0 +1,104 @@
+{
+  // Epic Tech AI — OpenCode runtime
+  // Brand: https://github.com/epictechai · https://x.com/EpicTechAI · epictechai@gmail.com
+  // Docs: https://opencode.ai/docs/
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "system",
+  "username": "Epic Tech AI",
+
+  // Default primary = Epic super-agent (SOTA orchestrator)
+  "default_agent": "epic",
+
+  // SOTA defaults — swap IDs here when newer models land; agent roles stay stable.
+  // Primary reasoning: Claude Opus 4.8 via Kortix gateway
+  "model": "kortix/anthropic/claude-opus-4.8",
+  // Cheap/fast path for titles & light tasks
+  "small_model": "kortix/anthropic/claude-haiku-4.5",
+
+  // Allow nested specialist fan-out (architect → builder, etc.)
+  "subagent_depth": 2,
+
+  // Machine sandboxes are isolated VMs on ephemeral branches.
+  // Global allow; agents tighten bash/mcp as needed.
+  "permission": "allow",
+
+  // Keep long missions coherent
+  "compaction": {
+    "auto": true,
+    "tail_turns": 4,
+    "prune": true
+  },
+
+  "tool_output": {
+    "max_lines": 2000,
+    "max_bytes": 51200
+  },
+
+  // Project-wide rules (brand + operating contract)
+  "instructions": ["AGENTS.md"],
+
+  // Built-in agent tweaks + explicit epic wiring
+  "agent": {
+    "epic": {
+      "model": "kortix/anthropic/claude-opus-4.8",
+      "variant": "high"
+    },
+    "architect": {
+      "model": "kortix/anthropic/claude-opus-4.8"
+    },
+    "builder": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "researcher": {
+      "model": "kortix/google/gemini-3.1-pro-preview"
+    },
+    "critic": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "ops": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    // Faster explore; keep general strong
+    "explore": {
+      "model": "kortix/anthropic/claude-haiku-4.5"
+    },
+    "general": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    },
+    "plan": {
+      "model": "kortix/anthropic/claude-opus-4.8"
+    },
+    "build": {
+      "model": "kortix/anthropic/claude-sonnet-5"
+    }
+  },
+
+  // Provider-level reasoning defaults (future-proof knobs)
+  "provider": {
+    "kortix": {
+      "models": {
+        "anthropic/claude-opus-4.8": {
+          "variants": {
+            "high": {
+              "thinking": { "type": "enabled", "budgetTokens": 16000 }
+            },
+            "max": {
+              "thinking": { "type": "enabled", "budgetTokens": 32000 }
+            }
+          }
+        },
+        "anthropic/claude-sonnet-5": {
+          "variants": {
+            "high": {
+              "thinking": { "type": "enabled", "budgetTokens": 10000 }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  // Local plugins. tools/ + plugins/ auto-discovered.
+  // PTY = long-running & interactive shells.
+  "plugin": ["./pty/pty-tools.ts"]
+}
