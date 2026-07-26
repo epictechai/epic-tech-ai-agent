@@ -1,7 +1,7 @@
 ---
 description: Legacy alias for Epic Tech AI full SOTA primary agent. Prefer `epic`. Same maximum-power mandate.
 mode: primary
-model: kortix/anthropic/claude-opus-4.8
+model: openai/gpt-4.1
 temperature: 0.2
 color: "#6D28D9"
 permission:

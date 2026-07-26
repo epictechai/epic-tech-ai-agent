@@ -1,27 +1,22 @@
 {
-  // Epic Tech AI — FULL SOTA OpenCode runtime (local + Machine)
-  // Brand: https://github.com/epictechai · https://x.com/EpicTechAI · epictechai@gmail.com
-  // Docs: https://opencode.ai/docs/
+  // Epic Tech AI — local + Machine
+  // Brand: https://github.com/epictechai · https://x.com/EpicTechAI
+  // Set key: opencode auth login  (never put keys in git)
   "$schema": "https://opencode.ai/config.json",
   "theme": "system",
   "username": "Epic Tech AI",
-
-  // Default primary = Epic super-agent (max power orchestrator)
   "default_agent": "epic",
 
-  // SOTA defaults — swap IDs here when newer models land; roles stay stable.
-  "model": "kortix/anthropic/claude-opus-4.8",
-  "small_model": "kortix/anthropic/claude-haiku-4.5",
+  // Local defaults (OpenAI). Change in UI or here if you use another provider.
+  "model": "openai/gpt-4.1",
+  "small_model": "openai/gpt-4.1-mini",
 
-  // Full power in isolated sandboxes / local dev
   "permission": "allow",
 
-  // Long autonomous missions stay coherent
   "compaction": {
     "auto": true,
     "tail_turns": 6,
-    "prune": true,
-    "preserve_recent_tokens": 12000
+    "prune": true
   },
 
   "tool_output": {
@@ -29,15 +24,8 @@
     "max_bytes": 102400
   },
 
-  "experimental": {
-    "batch_tool": true,
-    "mcp_timeout": 60000
-  },
-
-  // Project-wide rules (relative to project root when using .opencode layout)
   "instructions": ["AGENTS.md"],
 
-  // Explicit skill roots inside this config dir
   "skills": {
     "paths": [
       "skills",
@@ -45,106 +33,24 @@
     ]
   },
 
-  // Full roster — every specialist on SOTA models
   "agent": {
-    "epic": {
-      "model": "kortix/anthropic/claude-opus-4.8",
-      "variant": "max"
-    },
-    "architect": {
-      "model": "kortix/anthropic/claude-opus-4.8",
-      "variant": "high"
-    },
-    "builder": {
-      "model": "kortix/anthropic/claude-sonnet-5",
-      "variant": "high"
-    },
-    "researcher": {
-      "model": "kortix/google/gemini-3.1-pro-preview"
-    },
-    "critic": {
-      "model": "kortix/anthropic/claude-sonnet-5",
-      "variant": "high"
-    },
-    "ops": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "designer": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "writer": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "analyst": {
-      "model": "kortix/anthropic/claude-sonnet-5",
-      "variant": "high"
-    },
-    "counsel": {
-      "model": "kortix/anthropic/claude-opus-4.8",
-      "variant": "high"
-    },
-    "creator": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "seller": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "product": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    },
-    "explore": {
-      "model": "kortix/anthropic/claude-haiku-4.5"
-    },
-    "general": {
-      "model": "kortix/anthropic/claude-sonnet-5",
-      "variant": "high"
-    },
-    "plan": {
-      "model": "kortix/anthropic/claude-opus-4.8",
-      "variant": "high"
-    },
-    "build": {
-      "model": "kortix/anthropic/claude-sonnet-5",
-      "variant": "high"
-    },
-    "memory-reflector": {
-      "model": "kortix/anthropic/claude-sonnet-5"
-    }
-  },
-
-  // Max reasoning budgets for flagship models
-  "provider": {
-    "kortix": {
-      "models": {
-        "anthropic/claude-opus-4.8": {
-          "variants": {
-            "high": {
-              "thinking": { "type": "enabled", "budgetTokens": 16000 }
-            },
-            "max": {
-              "thinking": { "type": "enabled", "budgetTokens": 32000 }
-            }
-          }
-        },
-        "anthropic/claude-sonnet-5": {
-          "variants": {
-            "high": {
-              "thinking": { "type": "enabled", "budgetTokens": 12000 }
-            },
-            "max": {
-              "thinking": { "type": "enabled", "budgetTokens": 20000 }
-            }
-          }
-        },
-        "google/gemini-3.1-pro-preview": {
-          "variants": {
-            "high": {},
-            "max": {}
-          }
-        }
-      }
-    }
-  },
-
-  "plugin": ["./pty/pty-tools.ts"]
+    "epic": { "model": "openai/gpt-4.1" },
+    "architect": { "model": "openai/gpt-4.1" },
+    "builder": { "model": "openai/gpt-4.1-mini" },
+    "researcher": { "model": "openai/gpt-4.1" },
+    "critic": { "model": "openai/gpt-4.1-mini" },
+    "ops": { "model": "openai/gpt-4.1-mini" },
+    "designer": { "model": "openai/gpt-4.1-mini" },
+    "writer": { "model": "openai/gpt-4.1-mini" },
+    "analyst": { "model": "openai/gpt-4.1-mini" },
+    "counsel": { "model": "openai/gpt-4.1" },
+    "creator": { "model": "openai/gpt-4.1-mini" },
+    "seller": { "model": "openai/gpt-4.1-mini" },
+    "product": { "model": "openai/gpt-4.1-mini" },
+    "explore": { "model": "openai/gpt-4.1-mini" },
+    "general": { "model": "openai/gpt-4.1-mini" },
+    "plan": { "model": "openai/gpt-4.1" },
+    "build": { "model": "openai/gpt-4.1-mini" },
+    "memory-reflector": { "model": "openai/gpt-4.1-mini" }
+  }
 }

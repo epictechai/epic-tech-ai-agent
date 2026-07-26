@@ -1,7 +1,7 @@
 ---
 description: Systems architect subagent. Use for multi-file designs, API/data model tradeoffs, migration plans, and implementation blueprints before large builds. Read-heavy; writes plans/specs, not production code unless asked.
 mode: subagent
-model: kortix/anthropic/claude-opus-4.8
+model: openai/gpt-4.1
 temperature: 0.15
 color: "#2563EB"
 permission:

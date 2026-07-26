@@ -8,7 +8,7 @@ Brand: [github.com/epictechai](https://github.com/epictechai) · [x.com/EpicTech
 ---
 description: Epic Tech AI primary super-agent
 mode: primary
-model: kortix/anthropic/claude-opus-4.8
+model: openai/gpt-4.1
 permission:
   "*": allow
   mcp:
@@ -28,7 +28,7 @@ permission:
 ---
 description: Focused builder
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 permission:
   "*": allow
   mcp:

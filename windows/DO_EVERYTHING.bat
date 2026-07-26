@@ -2,15 +2,11 @@
 setlocal EnableExtensions EnableDelayedExpansion
 REM ################################################################
 REM  EPIC TECH AI — DO EVERYTHING (Windows 10)
-REM  Double-click this ONE file. It will:
-REM    1) Check Node
-REM    2) Fix OpenCode (baseline Win10 binary)
-REM    3) Install/update Epic into C:\Users\epict\EpicTechAI
-REM    4) Launch the agent (web or TUI fallback)
+REM  1) Node check  2) OpenCode baseline  3) Install Epic
+REM  4) Auth check  5) Launch (web, else TUI)
 REM ################################################################
 title EPIC TECH AI — DO EVERYTHING
 color 0A
-cd /d "%~dp0"
 
 set "DEST=C:\Users\epict\EpicTechAI"
 set "APP=%DEST%\epic-tech-ai-agent"
@@ -18,291 +14,187 @@ set "REPO_ZIP=https://github.com/epictechai/epic-tech-ai-agent/archive/refs/head
 set "LOG=%TEMP%\epic-do-everything.log"
 set "OC_EXE="
 
-echo. > "%LOG%"
-call :log "=== EPIC DO EVERYTHING %DATE% %TIME% ==="
+echo.>"%LOG%"
+call :log "=== START %DATE% %TIME% ==="
 
 echo.
 echo   ################################################
-echo   #   EPIC TECH AI — DO EVERYTHING ^(Windows^)    #
+echo   #   EPIC TECH AI — DO EVERYTHING (Windows)     #
 echo   ################################################
-echo.
-echo   Log file: %LOG%
-echo   Target:   %DEST%
+echo   Log: %LOG%
+echo   Dest: %DEST%
 echo.
 
-REM ========== STEP 0: Node ==========
-echo   [0/6] Checking Node.js...
-where node >nul 2>&1
-if errorlevel 1 (
-  echo   [!] Node.js missing. Opening installer page...
-  echo   Install LTS, RESTART this window, run DO_EVERYTHING.bat again.
-  start "" "https://nodejs.org"
-  call :fail "Node.js not installed"
-)
-where npm >nul 2>&1
-if errorlevel 1 call :fail "npm not found"
-for /f "tokens=*" %%V in ('node -v 2^>nul') do echo   node %%V
-for /f "tokens=*" %%V in ('npm -v 2^>nul') do echo   npm  %%V
-call :log "node ok"
+REM ---- Node ----
+echo   [1/5] Node.js...
+where node >nul 2>&1 || (start "" "https://nodejs.org" & call :fail "Install Node.js LTS, reopen CMD, re-run")
+where npm >nul 2>&1 || call :fail "npm missing"
+node -v
+npm -v
 
-REM ========== STEP 1: Fix OpenCode baseline ==========
+REM ---- OpenCode baseline ----
 echo.
-echo   [1/6] Fixing OpenCode for Windows 10 ^(baseline binary^)...
-call :log "fixing opencode"
-
-REM Remove broken global package that ships incompatible exe
+echo   [2/5] OpenCode (Windows baseline)...
 call npm uninstall -g opencode-ai >nul 2>&1
 if exist "%APPDATA%\npm\opencode.cmd" del /f /q "%APPDATA%\npm\opencode.cmd" >nul 2>&1
-if exist "%APPDATA%\npm\opencode.ps1" del /f /q "%APPDATA%\npm\opencode.ps1" >nul 2>&1
-if exist "%APPDATA%\npm\opencode" del /f /q "%APPDATA%\npm\opencode" >nul 2>&1
 if exist "%APPDATA%\npm\node_modules\opencode-ai" rmdir /s /q "%APPDATA%\npm\node_modules\opencode-ai" >nul 2>&1
 
-echo         Installing opencode-windows-x64-baseline...
 call npm install -g opencode-windows-x64-baseline@latest >>"%LOG%" 2>&1
-if errorlevel 1 (
-  echo         baseline package failed, trying opencode-ai + nested baseline...
-  call npm install -g opencode-ai@latest >>"%LOG%" 2>&1
-)
+if errorlevel 1 call npm install -g opencode-ai@latest >>"%LOG%" 2>&1
 
 call :find_oc
-if not defined OC_EXE (
-  echo.
-  echo   [!] Could not locate a working opencode.exe
-  echo   Trying desktop release download...
-  call :try_desktop_download
-  call :find_oc
-)
-if not defined OC_EXE (
-  echo   [!] Still no opencode.exe — see %LOG%
-  echo   Manual: https://github.com/sst/opencode/releases
-  echo   Get windows x64 BASELINE or desktop win-x64
-  start "" "https://github.com/sst/opencode/releases"
-  call :fail "opencode binary missing"
-)
+if not defined OC_EXE call :fail "opencode.exe not found — see log"
 
-echo   Found: !OC_EXE!
-"!OC_EXE!" --version >>"%LOG%" 2>&1
+echo   Binary: !OC_EXE!
 "!OC_EXE!" --version
-if errorlevel 1 (
-  echo   [!] Binary still incompatible with this Windows.
-  echo   Download desktop: opencode-desktop-win-x64.exe from GitHub releases.
-  start "" "https://github.com/sst/opencode/releases"
-  call :fail "opencode --version failed"
-)
+if errorlevel 1 call :fail "opencode --version failed (incompatible binary)"
 
-REM Shim so "opencode" works
 if not exist "%APPDATA%\npm" mkdir "%APPDATA%\npm"
-(
-  echo @echo off
-  echo " !OC_EXE! " %%*
-) > "%APPDATA%\npm\opencode.cmd"
-(
-  echo @echo off
-  echo " !OC_EXE! " %%*
-) > "%DEST%\opencode.cmd" 2>nul
-echo   [OK] OpenCode works
-call :log "opencode ok !OC_EXE!"
+> "%APPDATA%\npm\opencode.cmd" echo @echo off
+>>"%APPDATA%\npm\opencode.cmd" echo "!OC_EXE!" %%*
 
-REM ========== STEP 2: Install Epic files ==========
+REM ---- Install app ----
 echo.
-echo   [2/6] Installing Epic agent files to %APP% ...
+echo   [3/5] Epic files...
 if not exist "%DEST%" mkdir "%DEST%"
 
 if exist "%APP%\.kortix\opencode\opencode.jsonc" (
-  echo   [OK] Already present: %APP%
-  goto :DEPS
-)
-
-REM Prefer copy from current folder if this bat lives inside a full pack
-if exist "%~dp0.kortix\opencode\opencode.jsonc" (
-  echo   Copying from current pack...
+  echo   Already installed: %APP%
+) else if exist "%~dp0.kortix\opencode\opencode.jsonc" (
   if not exist "%APP%" mkdir "%APP%"
-  robocopy "%~dp0." "%APP%" /E /XD node_modules .git tmp /NFL /NDL /NJH /NJS /nc /ns /np >nul
-  goto :DEPS
-)
-
-if exist "%DEST%\EpicTechAI-Windows\.kortix\opencode\opencode.jsonc" (
-  echo   Using existing EpicTechAI-Windows folder...
+  robocopy "%~dp0." "%APP%" /E /XD node_modules .git tmp docs\download /NFL /NDL /NJH /NJS /nc /ns /np >nul
+) else if exist "%DEST%\EpicTechAI-Windows\.kortix\opencode\opencode.jsonc" (
   set "APP=%DEST%\EpicTechAI-Windows"
-  goto :DEPS
+) else (
+  echo   Downloading repo...
+  set "ZIP=%TEMP%\epic-main.zip"
+  set "UNZ=%TEMP%\epic-unz"
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri '%REPO_ZIP%' -OutFile '%TEMP%\epic-main.zip' -UseBasicParsing" >>"%LOG%" 2>&1
+  if errorlevel 1 call :fail "download failed"
+  if exist "%TEMP%\epic-unz" rmdir /s /q "%TEMP%\epic-unz"
+  mkdir "%TEMP%\epic-unz"
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "Expand-Archive '%TEMP%\epic-main.zip' '%TEMP%\epic-unz' -Force" >>"%LOG%" 2>&1
+  if not exist "%APP%" mkdir "%APP%"
+  robocopy "%TEMP%\epic-unz\epic-tech-ai-agent-main" "%APP%" /E /XD node_modules .git /NFL /NDL /NJH /NJS /nc /ns /np >nul
 )
 
-echo   Downloading latest repo ZIP...
-set "ZIP=%TEMP%\epic-main.zip"
-set "UNZ=%TEMP%\epic-unz-main"
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "try { Invoke-WebRequest -Uri '%REPO_ZIP%' -OutFile '%ZIP%' -UseBasicParsing } catch { exit 1 }" >>"%LOG%" 2>&1
-if errorlevel 1 call :fail "ZIP download failed — check internet"
+if not exist "%APP%\.kortix\opencode\opencode.jsonc" call :fail "install missing opencode.jsonc"
 
-if exist "%UNZ%" rmdir /s /q "%UNZ%"
-mkdir "%UNZ%"
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "Expand-Archive -Path '%ZIP%' -DestinationPath '%UNZ%' -Force" >>"%LOG%" 2>&1
-if not exist "%APP%" mkdir "%APP%"
-robocopy "%UNZ%\epic-tech-ai-agent-main" "%APP%" /E /XD node_modules .git /NFL /NDL /NJH /NJS /nc /ns /np >nul
-if not exist "%APP%\.kortix\opencode\opencode.jsonc" call :fail "Extract failed — opencode.jsonc missing"
-
-:DEPS
-echo.
-echo   [3/6] Installing tool dependencies...
 cd /d "%APP%"
 if not exist "%APP%\.opencode\" (
   mklink /J "%APP%\.opencode" "%APP%\.kortix\opencode" >nul 2>&1
-  if errorlevel 1 (
-    powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-      "New-Item -ItemType Junction -Path '%APP%\.opencode' -Target '%APP%\.kortix\opencode' -Force | Out-Null"
-  )
+  if errorlevel 1 powershell -NoProfile -Command "New-Item -ItemType Junction -Path '%APP%\.opencode' -Target '%APP%\.kortix\opencode' -Force|Out-Null"
 )
+
+echo   Installing tool deps...
 if exist "%APP%\.kortix\opencode\package.json" (
   pushd "%APP%\.kortix\opencode"
   call npm install --no-fund --no-audit >>"%LOG%" 2>&1
   popd
 )
-echo   [OK] deps
 
-REM Copy easy launchers to DEST root
 copy /Y "%~dp0DO_EVERYTHING.bat" "%DEST%\DO_EVERYTHING.bat" >nul 2>&1
-copy /Y "%APP%\LAUNCH.bat" "%DEST%\LAUNCH.bat" >nul 2>&1
-copy /Y "%APP%\RUN_TUI.bat" "%DEST%\RUN_TUI.bat" >nul 2>&1
-(
-  echo @echo off
-  echo " !OC_EXE! " %%*
-) > "%APP%\opencode.cmd"
-(
-  echo @echo off
-  echo " !OC_EXE! " %%*
-) > "%DEST%\opencode.cmd"
+copy /Y "%APP%\windows\LAUNCH.bat" "%DEST%\LAUNCH.bat" >nul 2>&1
+copy /Y "%APP%\windows\RUN_TUI.bat" "%DEST%\RUN_TUI.bat" >nul 2>&1
+> "%APP%\opencode.cmd" echo @echo off
+>>"%APP%\opencode.cmd" echo "!OC_EXE!" %%*
+> "%DEST%\opencode.cmd" echo @echo off
+>>"%DEST%\opencode.cmd" echo "!OC_EXE!" %%*
 
-REM ========== STEP 4: Auth check ==========
+REM ---- Auth ----
 echo.
-echo   [4/6] Checking model credentials...
+echo   [4/5] Credentials...
 set "OPENCODE_CONFIG_DIR=%APP%\.kortix\opencode"
 "!OC_EXE!" auth list > "%TEMP%\epic-auth.txt" 2>&1
 type "%TEMP%\epic-auth.txt"
-findstr /I "OPENAI ANTHROPIC GROQ xAI credential API" "%TEMP%\epic-auth.txt" >nul 2>&1
+findstr /I "OPENAI ANTHROPIC GROQ xAI API credential" "%TEMP%\epic-auth.txt" >nul 2>&1
 if errorlevel 1 (
   echo.
-  echo   ################################################
-  echo   #  ACTION NEEDED: add an API key ^(once^)      #
-  echo   ################################################
+  echo   No API key yet. A login window will open.
+  echo   Pick provider, paste key THERE only. Never in chat.
   echo.
-  echo   A window will run:  opencode auth login
-  echo   1. Pick your provider ^(OpenAI if key starts with sk-^)
-  echo   2. Paste your API key
-  echo   3. Come back here and press a key
-  echo.
-  echo   NEVER paste API keys into chat / Discord / email.
-  echo.
-  start "OpenCode Auth" cmd /k "\"!OC_EXE!\" auth login"
-  pause
+  start "OpenCode Auth" cmd /k ""!OC_EXE!" auth login"
+  echo   After login succeeds, press any key here...
+  pause >nul
 )
 
-REM ========== STEP 5: Launch web ==========
+REM ---- Launch ----
 echo.
-echo   [5/6] Starting Epic web UI...
-set "HOST=127.0.0.1"
-set "PORT=4097"
-for /L %%N in (0,1,20) do (
-  set /a TRY=4097+%%N
-  netstat -ano | findstr /R /C:":!TRY! .*LISTENING" >nul 2>&1
-  if errorlevel 1 (
-    set "PORT=!TRY!"
-    goto :PORT_OK
-  )
-)
-:PORT_OK
-
-set "SLOG=%TEMP%\epic-web-run.log"
-del "%SLOG%" >nul 2>&1
+echo   [5/5] Starting Epic...
 cd /d "%APP%"
 set "OPENCODE_CONFIG_DIR=%APP%\.kortix\opencode"
+set "HOST=127.0.0.1"
+set "PORT=4097"
 
-echo   URL: http://%HOST%:!PORT%/
-echo   Config: %OPENCODE_CONFIG_DIR%
-echo   Binary: !OC_EXE!
+REM write a tiny starter to avoid delayed-expansion bugs in start
+set "STARTER=%TEMP%\epic-start-web.cmd"
+set "SLOG=%TEMP%\epic-web-run.log"
+del "%SLOG%" >nul 2>&1
+
+(
+  echo @echo off
+  echo cd /d "%APP%"
+  echo set OPENCODE_CONFIG_DIR=%APP%\.kortix\opencode
+  echo set OPENCODE_PURE=1
+  echo "!OC_EXE!" web --hostname 127.0.0.1 --port 4097 --pure --print-logs
+) > "%STARTER%"
+
+echo   Starting web on http://127.0.0.1:4097/
+echo   Log: %SLOG%
 echo.
 
-start "EpicServer" /MIN cmd /c "cd /d \"%APP%\" && set OPENCODE_CONFIG_DIR=%OPENCODE_CONFIG_DIR%&& \"!OC_EXE!\" web --hostname %HOST% --port !PORT! --pure --print-logs > \"%SLOG%\" 2>&1"
+start "EpicServer" /MIN cmd /c "call \"%STARTER%\" > \"%SLOG%\" 2>&1"
 
-echo   [6/6] Waiting for server...
+echo   Waiting for server...
 set "READY=0"
-for /L %%I in (1,1,45) do (
-  powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-    "try { $r=Invoke-WebRequest -Uri 'http://%HOST%:!PORT!/' -UseBasicParsing -TimeoutSec 2; exit 0 } catch { exit 1 }" >nul 2>&1
-  if not errorlevel 1 (
-    set "READY=1"
-    goto :UP
-  )
+for /L %%I in (1,1,60) do (
+  powershell -NoProfile -Command "try{Invoke-WebRequest http://127.0.0.1:4097/ -UseBasicParsing -TimeoutSec 1|Out-Null;exit 0}catch{exit 1}" >nul 2>&1
+  if not errorlevel 1 (set "READY=1" & goto :READY)
+  REM if log shows hard error, break early
+  findstr /I "Error error panic FATAL incompatible" "%SLOG%" >nul 2>&1 && goto :NOTREADY
   ping -n 2 127.0.0.1 >nul
 )
 
-:UP
-if "!READY!"=="1" (
+:READY
+if "%READY%"=="1" (
   echo.
-  echo   ##############################################
-  echo   #  SUCCESS — Epic is running on this PC     #
-  echo   ##############################################
-  echo   Open: http://%HOST%:!PORT%/
-  echo   Keep this window open.
+  echo   ############################################
+  echo   #  SUCCESS — http://127.0.0.1:4097/        #
+  echo   #  Keep this window open.                  #
+  echo   ############################################
   echo.
-  start "" "http://%HOST%:!PORT%/"
-  echo   Live log:
-  powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-    "Get-Content -Path '%SLOG%' -Wait -ErrorAction SilentlyContinue"
+  start "" "http://127.0.0.1:4097/"
+  echo   Live log (Ctrl+C stops viewing, not always the server):
+  powershell -NoProfile -Command "Get-Content '%SLOG%' -Wait -ErrorAction SilentlyContinue"
   goto :eof
 )
 
+:NOTREADY
 echo.
-echo   [!] Web UI did not start. Log:
+echo   [!] Web UI failed. Server log:
+echo   ----------
 type "%SLOG%" 2>nul
+echo   ----------
 echo.
-echo   Falling back to TERMINAL UI...
-echo   Type a message after it starts. Ctrl+C to exit.
+echo   Starting TERMINAL UI instead (this usually works)...
+echo   Type a message. Ctrl+C to exit.
 echo.
 cd /d "%APP%"
 set "OPENCODE_CONFIG_DIR=%APP%\.kortix\opencode"
 "!OC_EXE!" --agent epic .
 echo.
-echo   Stopped. Log: %LOG% / %SLOG%
+echo   Stopped.
+echo   Logs: %LOG%
+echo         %SLOG%
 pause
 goto :eof
 
-REM ================= helpers =================
 :find_oc
 set "OC_EXE="
-if exist "%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" (
-  set "OC_EXE=%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" & goto :eof
-)
-if exist "%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\opencode.exe" (
-  set "OC_EXE=%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\opencode.exe" & goto :eof
-)
-if exist "%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" (
-  set "OC_EXE=%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" & goto :eof
-)
-if exist "%APPDATA%\npm\node_modules\opencode-windows-x64\bin\opencode.exe" (
-  set "OC_EXE=%APPDATA%\npm\node_modules\opencode-windows-x64\bin\opencode.exe" & goto :eof
-)
-if exist "%LOCALAPPDATA%\opencode\opencode.exe" (
-  set "OC_EXE=%LOCALAPPDATA%\opencode\opencode.exe" & goto :eof
-)
-if exist "%USERPROFILE%\opencode\opencode.exe" (
-  set "OC_EXE=%USERPROFILE%\opencode\opencode.exe" & goto :eof
-)
-for /f "delims=" %%F in ('dir /s /b "%APPDATA%\npm\node_modules\opencode.exe" 2^>nul') do (
-  set "OC_EXE=%%F"
-  goto :eof
-)
-goto :eof
-
-:try_desktop_download
-set "DDL=%USERPROFILE%\opencode"
-if not exist "%DDL%" mkdir "%DDL%"
-echo   Downloading portable windows baseline zip if available...
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "$ErrorActionPreference='Stop'; $api='https://api.github.com/repos/sst/opencode/releases/latest'; $r=Invoke-RestMethod -Uri $api -Headers @{'User-Agent'='EpicTechAI'}; $a=$r.assets | Where-Object { $_.name -match 'windows-x64-baseline|windows-x64.zip|opencode-windows' } | Select-Object -First 1; if (-not $a) { $a=$r.assets | Where-Object { $_.name -match 'win-x64' -and $_.name -match 'zip' } | Select-Object -First 1 }; if ($a) { Write-Host ('Downloading '+$a.name); Invoke-WebRequest -Uri $a.browser_download_url -OutFile ($env:TEMP+'\oc-win.zip') -UseBasicParsing; Expand-Archive ($env:TEMP+'\oc-win.zip') -DestinationPath '%DDL%' -Force; Get-ChildItem '%DDL%' -Recurse -Filter opencode.exe | Select-Object -First 1 -ExpandProperty FullName | Out-File '%TEMP%\oc-path.txt' -Encoding ascii } else { Write-Host 'No matching asset' }" >>"%LOG%" 2>&1
-if exist "%TEMP%\oc-path.txt" (
-  set /p OC_EXE=<"%TEMP%\oc-path.txt"
-)
+if exist "%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" set "OC_EXE=%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" & goto :eof
+if exist "%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\opencode.exe" set "OC_EXE=%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\opencode.exe" & goto :eof
+if exist "%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" set "OC_EXE=%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" & goto :eof
+for /f "delims=" %%F in ('dir /s /b "%APPDATA%\npm\node_modules\opencode.exe" 2^>nul') do set "OC_EXE=%%F" & goto :eof
 goto :eof
 
 :log
@@ -312,7 +204,6 @@ goto :eof
 :fail
 echo.
 echo   [FAIL] %~1
-echo   Full log: %LOG%
-echo.
+echo   Log: %LOG%
 pause
 exit /b 1

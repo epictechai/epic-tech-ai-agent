@@ -1,7 +1,7 @@
 ---
 description: Epic Tech AI FULL SOTA super-agent — system that outperforms any single frontier lab model via multi-agent orchestration, verification, memory, and tools. Default for anything-and-everything.
 mode: primary
-model: kortix/anthropic/claude-opus-4.8
+model: openai/gpt-4.1
 temperature: 0.2
 color: "#7C3AED"
 permission:

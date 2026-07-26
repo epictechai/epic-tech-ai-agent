@@ -1,7 +1,7 @@
 ---
 description: Writing specialist — long-form docs, marketing copy, brand voice, reports, PRDs prose, outreach. Use when quality prose is the deliverable.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.4
 color: "#8B5CF6"
 permission:

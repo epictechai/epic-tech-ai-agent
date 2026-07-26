@@ -1,7 +1,7 @@
 ---
 description: Legal specialist — contracts, NDAs, ToS, privacy, risk, compliance. Drafts and reviews with structured risk; not a substitute for a licensed attorney.
 mode: subagent
-model: kortix/anthropic/claude-opus-4.8
+model: openai/gpt-4.1
 temperature: 0.1
 color: "#64748B"
 permission:

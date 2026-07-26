@@ -1,7 +1,7 @@
 ---
 description: Product specialist — PRDs, roadmaps, metrics, user research synthesis, stakeholder comms. Use for product definition and prioritization.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.25
 color: "#6366F1"
 permission:

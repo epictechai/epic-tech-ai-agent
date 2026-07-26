@@ -1,7 +1,7 @@
 ---
 description: Design specialist — UI/UX direction, brand systems, logos, visual QA, slide aesthetics. Use for look-and-feel, design tokens, logo work, and polished visual artifacts.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.35
 color: "#EC4899"
 permission:

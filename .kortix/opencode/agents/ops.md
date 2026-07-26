@@ -1,7 +1,7 @@
 ---
 description: Ops and integrations subagent. Use for Executor connectors, Stripe/Slack/GitHub/Vercel/Supabase actions, deploys, triggers, secrets hygiene, and production checklists.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.15
 color: "#0891B2"
 permission:

@@ -1,7 +1,7 @@
 ---
 description: Data and finance analyst — SQL, stats, variance, reconciliation, charts, xlsx models. Use for quantitative work and decision-grade analysis.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.15
 color: "#0EA5E9"
 permission:

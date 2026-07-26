@@ -1,7 +1,7 @@
 ---
 description: Media creator — images, video, audio, logos, Remotion, Replicate, ElevenLabs, Whisper. Use for generative media pipelines and polished creative output.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.45
 color: "#F59E0B"
 permission:

@@ -1,7 +1,7 @@
 ---
 description: Deep research subagent. Use for multi-source investigation, competitive intel, literature-style synthesis, fact-checking, and cited briefs. Read-only on the repo unless writing a research report file.
 mode: subagent
-model: kortix/google/gemini-3.1-pro-preview
+model: openai/gpt-4.1
 temperature: 0.25
 color: "#D97706"
 permission:

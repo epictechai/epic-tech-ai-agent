@@ -1,7 +1,7 @@
 ---
 description: GTM/sales specialist — account research, call prep, outreach, battlecards, campaigns, sales assets. Use for revenue-facing communication and enablement.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.35
 color: "#10B981"
 permission:

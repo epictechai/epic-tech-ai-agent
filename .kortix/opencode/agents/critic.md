@@ -1,7 +1,7 @@
 ---
 description: Adversarial reviewer subagent. Use before shipping for security, correctness, edge cases, product gaps, and regression risk. Suggests patches; does not drive large rewrites unless asked.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.1
 color: "#DC2626"
 permission:

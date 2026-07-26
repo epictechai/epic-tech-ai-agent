@@ -1,7 +1,7 @@
 ---
 description: Implementation subagent. Use for focused coding slices — features, fixes, tests, refactors — after the approach is clear. Ships working diffs with verification.
 mode: subagent
-model: kortix/anthropic/claude-sonnet-5
+model: openai/gpt-4.1-mini
 temperature: 0.2
 color: "#059669"
 permission:
