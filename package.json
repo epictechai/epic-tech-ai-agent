@@ -1,32 +1,30 @@
 {
   "name": "epic-tech-ai-agent",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
-  "description": "Epic Tech AI — full SOTA super-agent. One-click: ./LAUNCH.sh · github.com/epictechai · x.com/EpicTechAI",
+  "description": "Epic Tech AI — SOTA multi-agent stack. Windows: DO_EVERYTHING.bat",
   "scripts": {
     "start": "bash LAUNCH.sh web",
     "launch": "bash LAUNCH.sh web",
-    "agent": "bash LAUNCH.sh web",
-    "agent:web": "bash LAUNCH.sh web",
-    "agent:tui": "bash LAUNCH.sh tui",
-    "agent:serve": "bash LAUNCH.sh serve",
-    "agent:run": "bash scripts/run-local.sh run",
-    "setup": "bash scripts/setup-local.sh",
     "doctor": "bash LAUNCH.sh doctor",
-    "push": "git push origin main"
-  },
-  "engines": {
-    "node": ">=18"
+    "setup": "bash scripts/setup-local.sh"
   },
   "license": "MIT",
   "homepage": "https://epictechai.github.io/epic-tech-ai-agent/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/epictechai/epic-tech-ai-agent.git"
+    "url": "git+https://github.com/epictechai/epic-tech-ai-agent.git"
   },
   "bugs": {
     "url": "https://github.com/epictechai/epic-tech-ai-agent/issues",
     "email": "epictechai@gmail.com"
   },
-  "author": "Epic Tech AI <epictechai@gmail.com> (https://github.com/epictechai)"
+  "author": "Epic Tech AI <epictechai@gmail.com> (https://github.com/epictechai)",
+  "keywords": [
+    "ai",
+    "agents",
+    "opencode",
+    "multi-agent",
+    "epic-tech-ai"
+  ]
 }
