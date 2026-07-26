@@ -1,15 +1,61 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Download Windows launchers — Epic Tech AI</title>
-<meta http-equiv="refresh" content="0;url=../#run"/>
-<style>body{font-family:system-ui;background:#07070b;color:#eee;padding:40px}a{color:#34d399;font-size:1.2rem;display:block;margin:12px 0}</style>
-</head><body>
-<h1>Windows download</h1>
-<p>For <code>C:\Users\epict\EpicTechAI</code> — right-click → Save link as:</p>
-<a href="SETUP_AND_LAUNCH.bat" download>SETUP_AND_LAUNCH.bat</a>
-<a href="LAUNCH.bat" download>LAUNCH.bat</a>
-<a href="START_EPIC.bat" download>START_EPIC.bat</a>
-<a href="LAUNCH.ps1" download>LAUNCH.ps1</a>
-<p><a href="../">← back to launcher</a></p>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download for Windows — Epic Tech AI</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #07070b; color: #f2f0ff; padding: 32px 18px; max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; margin: 0 0 8px; }
+    p { color: #9b97b0; line-height: 1.5; }
+    .big {
+      display: block; text-align: center; text-decoration: none;
+      background: linear-gradient(135deg, #10b981, #0d9488);
+      color: #04140e; font-weight: 800; font-size: 1.15rem;
+      padding: 22px 18px; border-radius: 16px; margin: 24px 0;
+      box-shadow: 0 12px 40px rgba(16,185,129,.35);
+    }
+    .big:hover { filter: brightness(1.05); }
+    .card {
+      border: 1px solid #1c1c2a; border-radius: 14px; padding: 16px; margin: 12px 0;
+      background: #0c0c14;
+    }
+    a.file { display: block; color: #22d3ee; margin: 10px 0; font-size: 1.05rem; }
+    code { background: #151522; padding: 2px 6px; border-radius: 6px; color: #a78bfa; }
+    ol { color: #c4b5fd; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <h1>Windows install — Epic Tech AI</h1>
+  <p>Target folder: <code>C:\Users\epict\EpicTechAI</code></p>
+
+  <a class="big" href="INSTALL_TO_C_USERS_EPICT.bat" download="INSTALL_TO_C_USERS_EPICT.bat">
+    Download INSTALL_TO_C_USERS_EPICT.bat
+  </a>
+
+  <div class="card">
+    <strong>Do this (3 steps)</strong>
+    <ol>
+      <li>Click the green button above (Save the <code>.bat</code> file — not .txt).</li>
+      <li>Move it to <code>C:\Users\epict\EpicTechAI</code> (create the folder if needed).</li>
+      <li>Double-click <code>INSTALL_TO_C_USERS_EPICT.bat</code> — it installs + launches.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <strong>Or download full package ZIP</strong><br/>
+    <a class="file" href="EpicTechAI-Windows.zip" download>EpicTechAI-Windows.zip</a>
+    Extract to <code>C:\Users\epict\EpicTechAI</code> then double-click <code>2_RUN_EPIC.bat</code>
+  </div>
+
+  <div class="card">
+    <strong>Individual files</strong>
+    <a class="file" href="SETUP_AND_LAUNCH.bat" download>SETUP_AND_LAUNCH.bat</a>
+    <a class="file" href="LAUNCH.bat" download>LAUNCH.bat</a>
+    <a class="file" href="START_EPIC.bat" download>START_EPIC.bat</a>
+  </div>
+
+  <p>Need OpenCode once: <a href="https://opencode.ai/docs" style="color:#a78bfa">opencode.ai/docs</a></p>
+  <p><a href="../" style="color:#9b97b0">← back</a></p>
+</body>
+</html>
