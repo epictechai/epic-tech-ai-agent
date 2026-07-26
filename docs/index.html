@@ -303,11 +303,20 @@
         Fully local = you keep keys, files, and power on your machine. That is intentional and safer.
       </div>
 
+      <div class="note" style="border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.08);color:var(--cyan);margin-top:18px">
+        <strong style="color:var(--ink)">Windows (C:\Users\epict\EpicTechAI):</strong>
+        Download <a href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/SETUP_AND_LAUNCH.bat" style="color:#fff;text-decoration:underline"><strong>SETUP_AND_LAUNCH.bat</strong></a>
+        into that folder → double-click.
+        Or full ZIP + double-click <strong>LAUNCH.bat</strong> inside the extracted repo.
+      </div>
+
       <div class="downloads">
-        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.sh"><b>LAUNCH.sh</b>raw script</a>
-        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.command"><b>LAUNCH.command</b>macOS</a>
-        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.bat"><b>LAUNCH.bat</b>Windows</a>
+        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/SETUP_AND_LAUNCH.bat" download="SETUP_AND_LAUNCH.bat"><b>SETUP_AND_LAUNCH.bat</b>Windows first-time</a>
+        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.bat" download="LAUNCH.bat"><b>LAUNCH.bat</b>Windows run</a>
+        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/START_EPIC.bat" download="START_EPIC.bat"><b>START_EPIC.bat</b>Windows shortcut</a>
         <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.ps1"><b>LAUNCH.ps1</b>PowerShell</a>
+        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.sh"><b>LAUNCH.sh</b>Mac/Linux</a>
+        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.command"><b>LAUNCH.command</b>macOS</a>
       </div>
     </section>
 
@@ -338,7 +347,7 @@ npm start                   # same as ./LAUNCH.sh</pre>
       mac:
         "git clone " + REPO + " && cd epic-tech-ai-agent && chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh && open LAUNCH.command",
       win:
-        "git clone " + REPO + "; cd epic-tech-ai-agent; .\\LAUNCH.bat",
+        "mkdir \"%USERPROFILE%\\EpicTechAI\" 2>nul & cd /d \"%USERPROFILE%\\EpicTechAI\" & curl -L -o SETUP_AND_LAUNCH.bat https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/SETUP_AND_LAUNCH.bat & SETUP_AND_LAUNCH.bat",
     };
 
     const ta = document.getElementById("launch-cmd");
