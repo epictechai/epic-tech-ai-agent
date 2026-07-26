@@ -4,7 +4,8 @@
 
 | | |
 |---|---|
-| **Launch (GitHub Pages)** | **[epictechai.github.io/epic-tech-ai-agent](https://epictechai.github.io/epic-tech-ai-agent/)** |
+| **▶ Run fully local** | **[epictechai.github.io/epic-tech-ai-agent/#run](https://epictechai.github.io/epic-tech-ai-agent/#run)** — green **Copy fully-local launch command** |
+| **Launch home** | [epictechai.github.io/epic-tech-ai-agent](https://epictechai.github.io/epic-tech-ai-agent/) |
 | GitHub | [github.com/epictechai/epic-tech-ai-agent](https://github.com/epictechai/epic-tech-ai-agent) |
 | Org | [github.com/epictechai](https://github.com/epictechai) |
 | X | [x.com/EpicTechAI](https://x.com/EpicTechAI) |

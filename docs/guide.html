@@ -35,14 +35,26 @@
       <li>Git, and optionally bun or npm for tool dependencies</li>
     </ul>
 
-    <h3>2. Install &amp; one-click launch</h3>
-    <pre>git clone https://github.com/epictechai/epic-tech-ai-agent.git
+    <h3>2. Install &amp; one-click launch (fully local)</h3>
+    <div class="notice">
+      <strong>Fastest path:</strong> open
+      <a href="./#run">epictechai.github.io/epic-tech-ai-agent/#run</a>,
+      click the big green <strong>Copy fully-local launch command</strong>, paste in Terminal.
+    </div>
+    <pre># --- ONE LINE (macOS / Linux) ---
+git clone https://github.com/epictechai/epic-tech-ai-agent.git && cd epic-tech-ai-agent && chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh && ./LAUNCH.sh
+
+# --- OR step by step ---
+git clone https://github.com/epictechai/epic-tech-ai-agent.git
 cd epic-tech-ai-agent
 chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh
-./LAUNCH.sh                 # web UI, default agent: epic
+./LAUNCH.sh                 # opens local web UI → agent "epic"
+
 # macOS Finder: double-click LAUNCH.command
-# Windows: LAUNCH.bat or LAUNCH.ps1
+# Windows: double-click LAUNCH.bat  (or powershell -File LAUNCH.ps1)
 # npm start                 # same as ./LAUNCH.sh</pre>
+    <p>Prerequisite once: <a href="https://opencode.ai/docs">OpenCode</a> + a model provider (<code>opencode providers</code>).</p>
+
 
     <h3>3. Health check</h3>
     <pre>./LAUNCH.sh doctor
