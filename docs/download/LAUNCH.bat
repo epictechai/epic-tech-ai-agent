@@ -26,20 +26,41 @@ if not exist "%~dp0.kortix\opencode\opencode.jsonc" (
   exit /b 1
 )
 
-where opencode >nul 2>&1
-if errorlevel 1 (
-  echo   [!] opencode not found on PATH.
-  echo       npm install -g opencode-ai
-  echo       then close this window and run LAUNCH.bat again
-  pause
-  exit /b 1
+REM Resolve opencode binary (prefer baseline on Win10)
+set "OC=opencode"
+if exist "%~dp0opencode.cmd" set "OC=%~dp0opencode.cmd"
+if exist "%APPDATA%\npm\opencode.cmd" set "OC=%APPDATA%\npm\opencode.cmd"
+
+REM Prefer baseline exe if present (fixes Win10 incompatibility)
+if exist "%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" (
+  set "OC=%APPDATA%\npm\node_modules\opencode-windows-x64-baseline\bin\opencode.exe"
+)
+if exist "%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe" (
+  set "OC=%APPDATA%\npm\node_modules\opencode-ai\node_modules\opencode-windows-x64-baseline\bin\opencode.exe"
 )
 
-for /f "tokens=*" %%V in ('opencode --version 2^>nul') do set "OCVER=%%V"
+where opencode >nul 2>&1
+if errorlevel 1 (
+  if not exist "%OC%" (
+    echo   [!] opencode not found / not compatible.
+    echo       Run: INSTALL_OPENCODE_WINDOWS.bat
+    echo       Download: https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat
+    if exist "%~dp0INSTALL_OPENCODE_WINDOWS.bat" (
+      echo       Starting installer...
+      call "%~dp0INSTALL_OPENCODE_WINDOWS.bat"
+    )
+    pause
+    exit /b 1
+  )
+)
+
+for /f "tokens=*" %%V in ('"%OC%" --version 2^>nul') do set "OCVER=%%V"
 echo   opencode: !OCVER!
+echo   binary:   !OC!
 if not defined OCVER (
-  echo   [!] opencode --version returned nothing. Reinstall:
-  echo       npm install -g opencode-ai
+  echo   [!] This opencode binary is NOT compatible with your Windows.
+  echo       Fix: run INSTALL_OPENCODE_WINDOWS.bat  ^(baseline build^)
+  if exist "%~dp0INSTALL_OPENCODE_WINDOWS.bat" call "%~dp0INSTALL_OPENCODE_WINDOWS.bat"
   pause
   exit /b 1
 )
@@ -107,7 +128,7 @@ REM Use --pure first on Windows ^(avoids plugin crashes^); fallback without pure
 set "MODE=pure"
 del "%LOG%" >nul 2>&1
 
-start "EpicOpenCode" /MIN cmd /c "set OPENCODE_CONFIG_DIR=%OPENCODE_CONFIG_DIR%&& opencode web --hostname %HOST% --port !PORT! --pure --print-logs > \"%LOG%\" 2>&1"
+start "EpicOpenCode" /MIN cmd /c "set OPENCODE_CONFIG_DIR=%OPENCODE_CONFIG_DIR%&& \"%OC%\" web --hostname %HOST% --port !PORT! --pure --print-logs > \"%LOG%\" 2>&1"
 
 echo   Waiting for server to become ready...
 set "READY=0"
@@ -155,14 +176,14 @@ echo   === FALLBACK: terminal UI ===
 echo   Type your message and press Enter. Agent: epic
 echo.
 set "OPENCODE_CONFIG_DIR=%OPENCODE_CONFIG_DIR%"
-opencode --agent epic .
+"%OC%" --agent epic .
 set "ERR=%ERRORLEVEL%"
 
 echo.
 if not "%ERR%"=="0" (
   echo   [!] opencode failed code %ERR%
-  echo   1^) opencode auth login
-  echo   2^) opencode auth list
+  echo   1^) INSTALL_OPENCODE_WINDOWS.bat
+  echo   2^) opencode auth login
   echo   3^) type log: %LOG%
 )
 pause
