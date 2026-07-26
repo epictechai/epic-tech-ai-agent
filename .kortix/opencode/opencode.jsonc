@@ -1,5 +1,5 @@
 {
-  // Epic Tech AI — FULL SOTA OpenCode runtime
+  // Epic Tech AI — FULL SOTA OpenCode runtime (local + Machine)
   // Brand: https://github.com/epictechai · https://x.com/EpicTechAI · epictechai@gmail.com
   // Docs: https://opencode.ai/docs/
   "$schema": "https://opencode.ai/config.json",
@@ -13,10 +13,7 @@
   "model": "kortix/anthropic/claude-opus-4.8",
   "small_model": "kortix/anthropic/claude-haiku-4.5",
 
-  // Deep specialist trees: epic → specialist → explore/general
-  "subagent_depth": 3,
-
-  // Full power in isolated sandboxes
+  // Full power in isolated sandboxes / local dev
   "permission": "allow",
 
   // Long autonomous missions stay coherent
@@ -37,14 +34,14 @@
     "mcp_timeout": 60000
   },
 
-  // Project-wide rules
+  // Project-wide rules (relative to project root when using .opencode layout)
   "instructions": ["AGENTS.md"],
 
-  // Explicit skill roots (GKW + platform + epic)
+  // Explicit skill roots inside this config dir
   "skills": {
     "paths": [
-      ".kortix/opencode/skills",
-      ".kortix/opencode/skills/GENERAL-KNOWLEDGE-WORKER"
+      "skills",
+      "skills/GENERAL-KNOWLEDGE-WORKER"
     ]
   },
 

@@ -9,3 +9,7 @@ volume/
 .kortix/opencode/node_modules/
 .kortix/opencode/bun.lock
 .kortix/opencode/package-lock.json
+.opencode/node_modules/
+*.local
+.cache/
+tmp/

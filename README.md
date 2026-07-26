@@ -99,9 +99,25 @@ kortix.toml
 
 ---
 
-## Quick start
+## Quick start — local
 
-1. Clone this repo (or open as a Machine project).  
+```bash
+git clone https://github.com/epictechai/epic-tech-ai-agent.git
+cd epic-tech-ai-agent
+npm run setup          # link .opencode, install tool deps, validate config
+npm run doctor         # agents / commands / skills health check
+npm run agent          # interactive TUI (default agent: epic)
+# or
+npm run agent:web      # browser UI on :4096
+npm run agent:run -- "Build a landing page for Epic Tech AI"
+```
+
+Requires [OpenCode](https://opencode.ai/docs) (`opencode` on PATH) and a model provider
+(`opencode providers` / Machine Kortix gateway credentials).
+
+## Quick start — Machine
+
+1. Import this repo as a Machine project (or copy `.kortix/` + `kortix.toml`).  
 2. Set dashboard secrets as needed (Stripe restricted, Tavily, Replicate, ElevenLabs, …).  
 3. Start a session — default agent is **`epic`**.  
 4. Run `/anything <your mission>`.  
