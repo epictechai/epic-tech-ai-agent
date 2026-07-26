@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Epic Tech AI Super-Agent"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "Epic Tech AI"
+    email: epictechai@gmail.com
+repository-code: "https://github.com/epictechai/epic-tech-ai-agent"
+url: "https://epictechai.github.io/epic-tech-ai-agent/"
+license: MIT
+date-released: "2026-07-26"
+abstract: >-
+  Open-source multi-agent orchestration stack for secure, tool-using autonomous
+  agents with project memory, specialist routing, and audited external API access.
+keywords:
+  - artificial-intelligence
+  - multi-agent
+  - autonomous-agents
+  - opencode
+  - orchestration

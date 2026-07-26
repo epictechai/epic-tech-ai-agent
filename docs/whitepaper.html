@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whitepaper — Epic Tech AI Super-Agent</title>
+  <meta name="description" content="Epic Tech AI whitepaper: multi-agent systems that outperform single frontier models on operator work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="./">
+        <div class="mark" aria-hidden="true"></div>
+        <div><h1>Epic Tech AI</h1><span>whitepaper</span></div>
+      </a>
+      <nav class="nav">
+        <a href="./">Launch</a>
+        <a href="docs.html">Docs</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
+      </nav>
+    </header>
+
+    <h2>Whitepaper: Systems Over Single Models</h2>
+    <p class="meta">
+      Epic Tech AI Super-Agent · Version 1.0 · 26 July 2026<br />
+      Authors: Epic Tech AI · Contact: epictechai@gmail.com<br />
+      Cite: see <a href="https://github.com/epictechai/epic-tech-ai-agent/blob/main/CITATION.cff">CITATION.cff</a> · License: <a href="license.html">MIT</a>
+    </p>
+
+    <div class="notice">
+      This document describes architecture and operating doctrine. It is not a guarantee of benchmark supremacy on every task.
+      See <a href="disclaimer.html">Disclaimer</a>.
+    </div>
+
+    <h3>Abstract</h3>
+    <p>Frontier laboratories publish increasingly capable foundation models. For real operator work—shipping software, researching with citations, executing audited SaaS actions, and maintaining long-horizon project context—a <strong>single chat model</strong> remains insufficient. Epic Tech AI packages a <strong>multi-agent system</strong>: orchestrator, specialists, skills, tools, memory, and verification. The thesis is simple: <em>systems beat solo models on production tasks</em> the way organizations beat lone geniuses.</p>
+
+    <h3>1. Problem</h3>
+    <p>Raw model access optimizes for conversational quality. Operators need:</p>
+    <ul>
+      <li>Durable project knowledge across sessions;</li>
+      <li>Safe integration with third-party APIs without key leakage;</li>
+      <li>Specialized depth (legal draft ≠ CSS ≠ SQL);</li>
+      <li>Adversarial review before irreversible actions;</li>
+      <li>Reproducible launch and open governance.</li>
+    </ul>
+
+    <h3>2. System overview</h3>
+    <pre>User / github.io launcher
+        │
+        ▼
+   OpenCode runtime (local or Machine)
+        │
+        ├─ epic (orchestrator, Opus-class)
+        ├─ specialists (build, research, critic, design, …)
+        ├─ skills (epic-os, epic-powers, epic-frontier, domain GKW)
+        ├─ tools (shell, browser, memory, media)
+        └─ Executor Gateway (optional) → SaaS with server-side secrets</pre>
+
+    <h3>3. Why “system &gt; single model”</h3>
+    <table>
+      <thead><tr><th>Capability</th><th>Single model chat</th><th>Epic system</th></tr></thead>
+      <tbody>
+        <tr><td>Reasoning</td><td>One pass</td><td>Route + critique + revise</td></tr>
+        <tr><td>Memory</td><td>Context window</td><td>Project brain files</td></tr>
+        <tr><td>Action</td><td>Text</td><td>Tools + verification</td></tr>
+        <tr><td>Integration</td><td>User pastes keys</td><td>Executor / least privilege</td></tr>
+        <tr><td>Governance</td><td>None</td><td>AUP, license, security policy</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4. Operating doctrine (epic-frontier)</h3>
+    <ol>
+      <li><strong>No one-shot hard problems</strong> — draft → critic → revise → verify.</li>
+      <li><strong>Multi-model routing</strong> — best specialist per subtask.</li>
+      <li><strong>Ensemble on high stakes</strong> — money, security, public content.</li>
+      <li><strong>Verification ladder</strong> — tools, tests, sources, residual risk.</li>
+      <li><strong>Anti-slop</strong> — artifacts over plans; skills over freestyle.</li>
+    </ol>
+
+    <h3>5. Security &amp; legitimacy</h3>
+    <p>Open MIT licensing, published Terms/Privacy/AUP, security reporting path, and explicit bans on malware and criminal use are first-class. Payment flows remain human-defined. Secrets never belong in git.</p>
+
+    <h3>6. Evaluation philosophy</h3>
+    <p>We optimize operator outcomes (time-to-working change, defect escape, citation quality, integration success, long-horizon coherence)—not leaderboard vibes alone. Users should measure on their workloads.</p>
+
+    <h3>7. Limitations</h3>
+    <ul>
+      <li>Dependent on underlying model providers and user configuration;</li>
+      <li>Not a substitute for licensed professionals;</li>
+      <li>Static github.io site launches local software; it does not host your LLM inference.</li>
+    </ul>
+
+    <h3>8. Conclusion</h3>
+    <p>Epic Tech AI is an open, documented, legally packaged agent <strong>system</strong>. Launch from <a href="./">epictechai.github.io/epic-tech-ai-agent</a>, run locally, and hold the stack to verification—not marketing.</p>
+
+    <p><a class="btn btn-primary" href="./">Launch</a> <a class="btn btn-ghost" href="docs.html">Full docs</a></p>
+
+    <footer class="site">
+      <div>© <span data-year>2026</span> Epic Tech AI · <a href="license.html">MIT</a></div>
+      <div><a href="disclaimer.html">Disclaimer</a> · <a href="terms.html">Terms</a></div>
+    </footer>
+  </div>
+  <script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://epictechai.github.io/epic-tech-ai-agent/sitemap.xml

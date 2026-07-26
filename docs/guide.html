@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Guide — Epic Tech AI</title>
+  <meta name="description" content="User guide: install and run the Epic Tech AI super-agent." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="./">
+        <div class="mark" aria-hidden="true"></div>
+        <div><h1>Epic Tech AI</h1><span>user guide</span></div>
+      </a>
+      <nav class="nav">
+        <a href="./">Launch</a>
+        <a href="docs.html">Docs</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
+      </nav>
+    </header>
+
+    <h2>User guide</h2>
+    <p class="meta">Install · launch · commands · safety · last updated 26 July 2026</p>
+
+    <h3>1. Requirements</h3>
+    <ul>
+      <li><a href="https://opencode.ai/docs">OpenCode</a> CLI on your PATH</li>
+      <li>A model provider configured (<code>opencode providers</code> or Machine/Kortix gateway)</li>
+      <li>Git, and optionally bun or npm for tool dependencies</li>
+    </ul>
+
+    <h3>2. Install &amp; one-click launch</h3>
+    <pre>git clone https://github.com/epictechai/epic-tech-ai-agent.git
+cd epic-tech-ai-agent
+chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh
+./LAUNCH.sh                 # web UI, default agent: epic
+# macOS Finder: double-click LAUNCH.command
+# Windows: LAUNCH.bat or LAUNCH.ps1
+# npm start                 # same as ./LAUNCH.sh</pre>
+
+    <h3>3. Health check</h3>
+    <pre>./LAUNCH.sh doctor
+# expects: config OK, default agent epic, skills listed</pre>
+
+    <h3>4. Full-power commands</h3>
+    <pre>/anything &lt;mission&gt;     # full routing
+/build /research /design /write /analyze
+/legal /create /sell /site /ops /ship /supercharge</pre>
+
+    <h3>5. Specialists</h3>
+    <p>Spawn via the task tool or @ mentions when supported: architect, builder, researcher, critic, ops, designer, writer, analyst, counsel, creator, seller, product.</p>
+
+    <h3>6. Skills that matter</h3>
+    <ul>
+      <li><code>epic-os</code> — mission loop</li>
+      <li><code>epic-powers</code> — full skill matrix</li>
+      <li><code>epic-frontier</code> — beat solo-model failure modes</li>
+      <li>Domain skills under <code>GENERAL-KNOWLEDGE-WORKER/</code></li>
+    </ul>
+
+    <h3>7. Safety (required reading)</h3>
+    <ul>
+      <li><a href="aup.html">Acceptable Use Policy</a> — no malware, crime, child exploitation</li>
+      <li><a href="disclaimer.html">Disclaimer</a> — AI is not professional advice</li>
+      <li>Never commit API keys; use provider dashboards / Executor</li>
+      <li>Human-defined pricing for any Stripe/Checkout flows</li>
+      <li>Supervise destructive git and production actions</li>
+    </ul>
+
+    <h3>8. Memory</h3>
+    <p>Project brain lives in <code>.kortix/memory/</code>. Durable facts only—no secrets or PII.</p>
+
+    <h3>9. Support</h3>
+    <p>epictechai@gmail.com · <a href="https://github.com/epictechai/epic-tech-ai-agent/issues">GitHub Issues</a> (non-security) · security via <a href="https://github.com/epictechai/epic-tech-ai-agent/blob/main/SECURITY.md">SECURITY.md</a></p>
+
+    <p><a class="btn btn-primary" href="./">Back to launcher</a></p>
+
+    <footer class="site">
+      <div>© <span data-year>2026</span> Epic Tech AI · <a href="license.html">MIT</a></div>
+      <div><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></div>
+    </footer>
+  </div>
+  <script src="assets/site.js"></script>
+</body>
+</html>

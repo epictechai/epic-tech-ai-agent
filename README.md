@@ -112,6 +112,24 @@ kortix.toml
 
 ---
 
+## Legal & trust
+
+| Document | Where |
+|---|---|
+| **MIT License** | [LICENSE](LICENSE) · [site](https://epictechai.github.io/epic-tech-ai-agent/license.html) |
+| **Terms of Use** | [terms](https://epictechai.github.io/epic-tech-ai-agent/terms.html) |
+| **Privacy Policy** | [privacy](https://epictechai.github.io/epic-tech-ai-agent/privacy.html) |
+| **Acceptable Use** | [AUP](https://epictechai.github.io/epic-tech-ai-agent/aup.html) |
+| **Disclaimer** | [disclaimer](https://epictechai.github.io/epic-tech-ai-agent/disclaimer.html) |
+| **Security** | [SECURITY.md](SECURITY.md) |
+| **Code of Conduct** | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
+| **Contributing** | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| **Whitepaper** | [whitepaper](https://epictechai.github.io/epic-tech-ai-agent/whitepaper.html) |
+| **Docs hub** | [docs](https://epictechai.github.io/epic-tech-ai-agent/docs.html) |
+| **Citation** | [CITATION.cff](CITATION.cff) |
+
+Software is **MIT**. Site use is subject to Terms + AUP. AI output is **not** professional advice.
+
 ## One-click launch — local
 
 | OS | What to do |

@@ -18,5 +18,15 @@
   "engines": {
     "node": ">=18"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://epictechai.github.io/epic-tech-ai-agent/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epictechai/epic-tech-ai-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/epictechai/epic-tech-ai-agent/issues",
+    "email": "epictechai@gmail.com"
+  },
+  "author": "Epic Tech AI <epictechai@gmail.com> (https://github.com/epictechai)"
 }
