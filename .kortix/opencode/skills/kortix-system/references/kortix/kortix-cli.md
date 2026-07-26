@@ -357,7 +357,7 @@ kortix project token rotate             # rotates the project token
 ### Spin up a fresh session with custom env
 
 ```sh
-kortix secrets set OPENAI_API_KEY=sk-… ANTHROPIC_API_KEY=sk-…
+kortix secrets set OPENAI_API_KEY=<your-key> ANTHROPIC_API_KEY=<your-key>
 kortix sessions new --prompt "Audit the auth module and propose a fix"
 ```
 

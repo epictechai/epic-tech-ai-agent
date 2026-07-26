@@ -238,7 +238,7 @@ Inject environment variables into all shell execution (AI tools and user termina
 export const InjectEnvPlugin = async () => {
   return {
     "shell.env": async (input, output) => {
-      output.env.MY_API_KEY = "secret"
+      output.env.MY_API_KEY = process.env.MY_API_KEY // never hardcode
       output.env.PROJECT_ROOT = input.cwd
     },
   }

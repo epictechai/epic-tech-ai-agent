@@ -80,7 +80,13 @@ LICENSE · SECURITY.md · TERMS (site)
 | Code of Conduct | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
 | Citation | [CITATION.cff](CITATION.cff) |
 
-Software is **MIT**. Site use is subject to Terms & AUP. AI output is **not** professional advice. Never commit API keys.
+Software is **MIT**. Site use is subject to Terms & AUP. AI output is **not** professional advice.
+
+### Secrets (bulletproof rule)
+
+- **No API keys in this repo** — verified by `npm run secret-scan` / `bash scripts/secret-scan.sh`
+- Use `opencode auth login` or a local `.env` (gitignored). See [`.env.example`](.env.example)
+- If a key was ever pasted in chat: **revoke it** and create a new one
 
 ---
 

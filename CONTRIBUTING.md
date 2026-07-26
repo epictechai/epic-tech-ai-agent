@@ -10,7 +10,9 @@ Thanks for helping improve the Epic Tech AI super-agent stack.
 
 1. Read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md), and the site legal pages (Terms, Privacy, Acceptable Use).  
 2. Do not commit secrets, API keys, or personal data.  
-3. Keep changes focused; prefer small PRs.  
+3. Run `bash scripts/secret-scan.sh` (or `npm run secret-scan`) before opening a PR — it must **PASS**.  
+4. Keep changes focused; prefer small PRs.  
+ 
 
 ## Development setup
 

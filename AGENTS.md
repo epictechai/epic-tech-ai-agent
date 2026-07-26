@@ -27,11 +27,15 @@ research, build, docs/office, media, GTM, support, finance/data, legal, platform
 
 ## Security (non-negotiable)
 
-1. No API keys, tokens, or PII in git, memory, prompts, or logs.
-2. Third-party APIs via **kortix-executor** (`connectors` → `discover` → `describe` → `call`).
+1. **No API keys, tokens, or PII in git, memory, prompts, or logs.**  
+   - Never hardcode secrets in agents, skills, bats, or docs.  
+   - Run `bash scripts/secret-scan.sh` before shipping.  
+   - Local auth: `opencode auth login` only.
+2. Third-party APIs via **kortix-executor** on Machine (`connectors` → `discover` → `describe` → `call`).
 3. Money paths (Stripe): human-defined pricing/Checkout only — no surprise charges.
 4. Destructive git/prod ops require confirmation.
 5. No malware, exploits, or criminal assistance.
+6. If a user pastes a key in chat: refuse to store it; tell them to revoke and use `opencode auth login`.
 
 ## Ship path
 

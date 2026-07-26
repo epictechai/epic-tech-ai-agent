@@ -1,14 +1,50 @@
+# Dependencies
 node_modules/
-.DS_Store
+.kortix/opencode/node_modules/
+.opencode/node_modules/
+**/node_modules/
+
+# Secrets & env (NEVER commit)
 .env
 .env.*
 !.env.example
-*.log
-*.local
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+auth.json
+**/auth.json
+credentials.json
+**/credentials*.json
+.secrets/
+secrets/
+*.secret
+
+# OpenCode / local runtime
 .cache/
+.local/
+*.log
 tmp/
-*.zip
-EpicTechAI-Windows/
-.kortix/opencode/node_modules/
-.kortix/opencode/bun.lock
+*.local
 .opencode/node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Build / packs
+*.zip
+*.tar.gz
+EpicTechAI-Windows/
+dist/
+build/
+coverage/
+
+# Locks that are environment-specific (keep package-lock for npm tools)
+.kortix/opencode/bun.lock

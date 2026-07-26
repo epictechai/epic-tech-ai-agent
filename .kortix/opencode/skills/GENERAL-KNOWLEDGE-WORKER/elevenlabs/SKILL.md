@@ -226,5 +226,5 @@ python scripts/tts.py sound "gentle rain on a window" -o rain.mp3 --duration 30
 
 Add to `core/docker/.env` (or the active OpenCode config dir `.env` during local materialization):
 ```
-ELEVENLABS_API_KEY=your_key_here
+# export ELEVENLABS_API_KEY=   # set in environment, never commit
 ```
