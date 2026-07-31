@@ -4,40 +4,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Download — Epic Tech AI</title>
+  <meta name="theme-color" content="#03030a" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: system-ui, sans-serif; background: #07070b; color: #f3f1ff; max-width: 520px; margin: 0 auto; padding: 40px 18px; }
-    h1 { font-size: 1.6rem; margin: 0 0 8px; }
-    p { color: #9b97b0; line-height: 1.5; }
-    .big {
-      display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 1.15rem;
-      padding: 22px; border-radius: 16px; margin: 24px 0;
-      background: linear-gradient(135deg, #34d399, #059669); color: #042f1a;
+    body {
+      margin: 0; min-height: 100vh; font-family: "Instrument Sans", system-ui, sans-serif;
+      background: #03030a; color: #f7f5ff;
+      background-image: radial-gradient(600px 300px at 50% 0%, rgba(139,92,246,.2), transparent 60%);
+      display: flex; align-items: center; justify-content: center; padding: 40px 18px;
     }
-    a.f { display: block; color: #22d3ee; margin: 10px 0; }
-    ol { color: #c4b5fd; line-height: 1.7; }
-    code { background: #151522; padding: 2px 6px; border-radius: 5px; color: #a78bfa; }
+    .card {
+      max-width: 440px; width: 100%;
+      background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: 36px 28px;
+      backdrop-filter: blur(16px); text-align: center;
+      box-shadow: 0 40px 80px rgba(0,0,0,.5);
+    }
+    h1 { font-family: Syne, sans-serif; font-size: 1.75rem; margin: 0 0 8px; letter-spacing: -.03em; }
+    p { color: #8b87a2; line-height: 1.5; margin: 0 0 24px; }
+    .big {
+      display: block; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+      padding: 18px; border-radius: 14px; margin-bottom: 20px;
+      background: linear-gradient(135deg, #10b981, #0d9488); color: #03150e;
+      box-shadow: 0 12px 40px rgba(16,185,129,.35);
+    }
+    .big:hover { filter: brightness(1.06); }
+    a.f { display: block; color: #22d3ee; margin: 10px 0; font-size: .95rem; text-decoration: none; }
+    a.f:hover { color: #fff; }
+    ol { text-align: left; color: #a5b4fc; line-height: 1.7; font-size: .9rem; padding-left: 1.2rem; }
+    code { background: #151522; padding: 2px 6px; border-radius: 5px; color: #c4b5fd; font-size: .85em; }
+    .back { display: inline-block; margin-top: 24px; color: #8b87a2; font-size: .85rem; }
   </style>
 </head>
 <body>
-  <h1>Download</h1>
-  <p>Local install only. This page does not run the agent in the browser.</p>
-
-  <a class="big" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
-    Windows: DO_EVERYTHING.bat
-  </a>
-
-  <ol>
-    <li>Install <a href="https://nodejs.org" style="color:#a78bfa">Node.js LTS</a> first</li>
-    <li>Save the file → double-click</li>
-    <li><code>opencode auth login</code> when asked</li>
-  </ol>
-
-  <p><strong>Also</strong></p>
-  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/LAUNCH.bat">LAUNCH.bat</a>
-  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat">RUN_TUI.bat</a>
-  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a>
-  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent">Full source (git clone)</a>
-
-  <p style="margin-top:28px"><a href="../" style="color:#9b97b0">← Install home</a></p>
+  <div class="card">
+    <h1>Download</h1>
+    <p>Local install. Your machine. Your key.</p>
+    <a class="big" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
+      Windows · DO_EVERYTHING.bat
+    </a>
+    <ol>
+      <li>Node.js LTS from nodejs.org</li>
+      <li>Double-click the file</li>
+      <li><code>opencode auth login</code> when asked</li>
+      <li>Open <code>http://127.0.0.1:4097/</code></li>
+    </ol>
+    <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/LAUNCH.bat">LAUNCH.bat</a>
+    <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat">RUN_TUI.bat</a>
+    <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a>
+    <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent">Source on GitHub</a>
+    <a class="back" href="../">← Back to experience</a>
+  </div>
 </body>
 </html>

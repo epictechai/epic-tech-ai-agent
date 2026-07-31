@@ -3,210 +3,584 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Epic Tech AI — Install Local Agent</title>
-  <meta name="description" content="Install Epic Tech AI on your computer. Windows one-click. Mac/Linux one command. Fully local." />
-  <meta name="theme-color" content="#07070b" />
+  <title>Epic Tech AI — The agent that runs on your machine</title>
+  <meta name="description" content="Sleek local super-agent. Multi-agent orchestration, your keys, your hardware. Install in minutes." />
+  <meta property="og:title" content="Epic Tech AI" />
+  <meta property="og:description" content="Million-dollar agent stack. Fully local. Open source." />
+  <meta property="og:url" content="https://epictechai.github.io/epic-tech-ai-agent/" />
+  <meta name="theme-color" content="#03030a" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #07070b; --card: #0e0e16; --ink: #f3f1ff; --muted: #9b97b0;
-      --line: #222233; --green: #34d399; --green-d: #059669; --violet: #a78bfa; --warn: #fbbf24; --red: #fb7185;
+      --bg: #03030a;
+      --bg2: #0a0a14;
+      --ink: #f7f5ff;
+      --muted: #8b87a2;
+      --line: rgba(255,255,255,.08);
+      --violet: #8b5cf6;
+      --violet2: #c4b5fd;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --pink: #f472b6;
+      --glass: rgba(12,12,24,.55);
+      --glass-border: rgba(255,255,255,.1);
     }
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0; font-family: "IBM Plex Sans", system-ui, sans-serif;
-      background: var(--bg); color: var(--ink); line-height: 1.5;
-      background-image: radial-gradient(900px 400px at 50% -10%, rgba(52,211,153,.12), transparent 55%);
+      margin: 0;
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
     }
-    a { color: var(--violet); }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 32px 18px 64px; }
-    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
-    .brand { font-weight: 700; font-size: 1.1rem; text-decoration: none; color: var(--ink); }
-    .brand span { color: var(--muted); font-weight: 400; font-size: .85rem; }
-    nav a { color: var(--muted); text-decoration: none; margin-left: 14px; font-size: .85rem; }
-    nav a:hover { color: var(--ink); }
-    h1 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin: 0 0 10px; letter-spacing: -.02em; }
-    .lead { color: var(--muted); margin: 0 0 24px; max-width: 40rem; }
-    .banner {
-      background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.35);
-      border-radius: 12px; padding: 12px 14px; font-size: .9rem; margin-bottom: 24px;
+    a { color: var(--violet2); text-decoration: none; }
+    a:hover { color: #fff; }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 28px;
+      background: linear-gradient(to bottom, rgba(3,3,10,.9), transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    .card {
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 20px; margin-bottom: 16px;
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: Syne, sans-serif; font-weight: 800; font-size: 1.05rem;
+      color: var(--ink); letter-spacing: -.02em;
     }
-    .card h2 { margin: 0 0 12px; font-size: 1.05rem; }
-    .card ol, .card ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
-    .card li { margin: 8px 0; }
-    .card strong { color: var(--ink); }
-    code, pre {
-      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .82rem;
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: conic-gradient(from 210deg, var(--violet), var(--cyan), var(--green), var(--violet));
+      box-shadow: 0 0 28px rgba(139,92,246,.55);
+      position: relative;
     }
-    code { background: #151522; padding: 2px 6px; border-radius: 5px; color: #c4b5fd; }
-    pre {
-      background: #05050a; border: 1px solid var(--line); border-radius: 10px;
-      padding: 12px 14px; overflow: auto; color: #d1fae5; margin: 10px 0 0;
+    .logo-mark::after {
+      content: ""; position: absolute; inset: 2px; border-radius: 8px; background: var(--bg);
     }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 16px !important; border-radius: 999px;
+      background: linear-gradient(135deg, var(--violet), #6d28d9);
+      color: #fff !important; font-weight: 600 !important;
+      box-shadow: 0 8px 28px rgba(109,40,217,.4);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 28px 80px;
+      overflow: hidden;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(3,3,10,1) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 70% 30%, rgba(34,211,238,.08), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(139,92,246,.1), transparent 50%);
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      font-size: .75rem; font-weight: 600; color: var(--green);
+      letter-spacing: .04em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .eyebrow i {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 12px var(--green); animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.85); }
+    }
+
+    h1 {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      margin: 0 0 18px;
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--violet2) 0%, var(--cyan) 45%, var(--green) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lede {
+      font-size: 1.1rem; color: var(--muted); max-width: 34rem; margin: 0 0 28px;
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      text-decoration: none; font-weight: 700; border-radius: 12px;
-      padding: 14px 18px; margin: 6px 8px 6px 0; font-size: .95rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-weight: 700; font-size: .95rem;
+      padding: 16px 22px; border-radius: 14px; border: 0; cursor: pointer;
+      text-decoration: none; transition: transform .15s, box-shadow .2s, background .2s;
     }
-    .btn-green {
-      background: linear-gradient(135deg, var(--green), var(--green-d));
-      color: #042f1a; box-shadow: 0 10px 30px rgba(16,185,129,.3);
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 50%, #0d9488 100%);
+      color: #03150e;
+      box-shadow: 0 12px 40px rgba(16,185,129,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 16px 50px rgba(16,185,129,.5);
+      color: #03150e;
     }
     .btn-ghost {
-      border: 1px solid var(--line); color: var(--ink); background: transparent;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--ink);
+      backdrop-filter: blur(12px);
     }
-    .row { display: flex; flex-wrap: wrap; gap: 4px; margin: 12px 0; }
-    .muted { color: var(--muted); font-size: .85rem; }
-    .warn { border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.08); }
-    .warn strong { color: var(--warn); }
-    details { border-top: 1px solid var(--line); padding: 10px 0; }
-    details:first-of-type { border-top: 0; }
-    summary { cursor: pointer; font-weight: 600; color: var(--ink); }
-    details p, details li { color: var(--muted); font-size: .9rem; }
-    footer {
-      margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line);
-      font-size: .8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px 16px; justify-content: space-between;
+    .btn-ghost:hover { border-color: rgba(255,255,255,.25); color: #fff; }
+
+    .trust {
+      display: flex; flex-wrap: wrap; gap: 16px 24px;
+      font-size: .8rem; color: var(--muted);
     }
-    footer a { color: var(--muted); }
+    .trust span { display: flex; align-items: center; gap: 6px; }
+    .trust b { color: var(--ink); font-weight: 600; }
+
+    /* Glass install card */
+    .install-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow:
+        0 0 0 1px rgba(139,92,246,.12),
+        0 40px 80px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .install-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
+    }
+    .install-card h2 {
+      font-family: Syne, sans-serif; font-size: 1.15rem; margin: 0 0 6px; letter-spacing: -.02em;
+    }
+    .install-card .sub { color: var(--muted); font-size: .85rem; margin: 0 0 18px; }
+    .tabs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;
+    }
+    .tab {
+      font-family: inherit; font-size: .82rem; font-weight: 600;
+      padding: 12px; border-radius: 12px; border: 1px solid var(--line);
+      background: rgba(0,0,0,.35); color: var(--muted); cursor: pointer;
+      transition: .15s;
+    }
+    .tab:hover { color: var(--ink); border-color: rgba(255,255,255,.15); }
+    .tab.on {
+      color: var(--ink);
+      border-color: rgba(52,211,153,.45);
+      background: rgba(52,211,153,.1);
+      box-shadow: 0 0 20px rgba(52,211,153,.12);
+    }
+    .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+    .steps li {
+      counter-increment: s;
+      display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+      margin-bottom: 12px; font-size: .88rem; color: var(--muted);
+    }
+    .steps li::before {
+      content: counter(s);
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 700; color: var(--cyan);
+      background: rgba(34,211,238,.1); border: 1px solid rgba(34,211,238,.25);
+    }
+    .steps strong { color: var(--ink); font-weight: 600; }
+    .steps a { color: var(--cyan); }
+    pre.cmd {
+      margin: 14px 0 0; padding: 14px;
+      background: #020208; border-radius: 12px; border: 1px solid var(--line);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: .72rem; color: #a7f3d0; overflow: auto; line-height: 1.55;
+    }
+    .panel { display: none; }
+    .panel.on { display: block; }
+
+    /* ---- SECTIONS ---- */
+    section.block {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; padding: 40px 28px 20px;
+    }
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--violet2); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: Syne, sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -.03em; margin: 0 0 12px; line-height: 1.15;
+    }
+    .section-desc { color: var(--muted); max-width: 36rem; margin: 0 0 32px; }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .tile {
+      grid-column: span 4;
+      background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
+      min-height: 160px;
+    }
+    .tile:hover {
+      border-color: rgba(139,92,246,.35);
+      transform: translateY(-2px);
+    }
+    .tile.wide { grid-column: span 8; }
+    .tile.tall { grid-column: span 4; min-height: 220px; }
+    @media (max-width: 800px) {
+      .tile, .tile.wide, .tile.tall { grid-column: span 12; }
+    }
+    .tile .icon {
+      width: 40px; height: 40px; border-radius: 12px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.25);
+    }
+    .tile h3 {
+      font-family: Syne, sans-serif; font-size: 1.05rem; margin: 0 0 8px; letter-spacing: -.02em;
+    }
+    .tile p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .marquee-wrap {
+      overflow: hidden; border-block: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      margin: 48px 0;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .marquee {
+      display: flex; gap: 40px; width: max-content;
+      animation: scroll 32s linear infinite;
+      padding: 18px 0; font-family: Syne, sans-serif; font-weight: 700;
+      font-size: .95rem; color: var(--muted); letter-spacing: -.01em;
+    }
+    .marquee span { white-space: nowrap; }
+    .marquee span em { font-style: normal; color: var(--ink); }
+    @keyframes scroll {
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee { animation: none; }
+    }
+
+    .compare {
+      width: 100%; border-collapse: collapse; font-size: .88rem;
+    }
+    .compare th, .compare td {
+      text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line);
+    }
+    .compare th { color: var(--muted); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; }
+    .compare td:last-child { color: var(--green); }
+    .compare td:nth-child(2) { color: var(--muted); }
+
+    .faq details {
+      border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px 18px; margin-bottom: 10px;
+      background: rgba(255,255,255,.02);
+    }
+    .faq summary {
+      cursor: pointer; font-weight: 600; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--violet2); font-size: 1.2rem; }
+    .faq details[open] summary::after { content: "−"; }
+    .faq details p { color: var(--muted); margin: 12px 0 0; font-size: .92rem; }
+
+    .final-cta {
+      text-align: center;
+      padding: 80px 28px 100px;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 100%, rgba(139,92,246,.2), transparent 60%);
+    }
+    .final-cta h2 {
+      font-family: Syne, sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -.03em; margin: 0 0 12px;
+    }
+    .final-cta p { color: var(--muted); margin: 0 0 28px; }
+
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 28px; max-width: 1100px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;
+      font-size: .8rem; color: var(--muted);
+    }
+    footer.site a { color: var(--muted); margin-right: 12px; }
+    footer.site a:hover { color: var(--ink); }
+
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .8em; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="./">Epic Tech AI <span>· local agent</span></a>
-      <nav>
-        <a href="download/">Download</a>
-        <a href="guide.html">Guide</a>
-        <a href="docs.html">Docs</a>
-        <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
-      </nav>
-    </header>
-
-    <h1>Install the agent on your computer</h1>
-    <p class="lead">
-      This website does <strong style="color:var(--ink)">not</strong> run the AI in your browser.
-      It gives you a clear local install. The agent runs on <strong style="color:var(--ink)">your machine</strong> with <strong style="color:var(--ink)">your API key</strong>.
-    </p>
-
-    <div class="banner">
-      <strong>You need 3 things:</strong>
-      (1) Node.js LTS &nbsp;·&nbsp;
-      (2) an API key (OpenAI or other) &nbsp;·&nbsp;
-      (3) the installer below
+  <nav class="nav">
+    <a class="logo" href="./">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Epic Tech AI
+    </a>
+    <div class="nav-links">
+      <a href="#install">Install</a>
+      <a href="#system">System</a>
+      <a href="#faq">FAQ</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
+      <a class="nav-cta" href="#install">Get the agent</a>
     </div>
+  </nav>
 
-    <!-- WINDOWS -->
-    <section class="card" id="windows">
-      <h2>Windows — one file</h2>
-      <div class="row">
-        <a class="btn btn-green" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
-          Download DO_EVERYTHING.bat
-        </a>
-        <a class="btn btn-ghost" href="https://nodejs.org">Get Node.js LTS</a>
+  <header class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow"><i></i> Fully local · open source · MIT</div>
+        <h1>The agent stack that feels like <em>the future</em>.</h1>
+        <p class="lede">
+          Not another chat tab. A multi-agent system on <strong style="color:var(--ink)">your hardware</strong>,
+          with <strong style="color:var(--ink)">your keys</strong> — specialists, skills, memory, verification.
+          Install once. Come back every day.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
+            Download for Windows
+          </a>
+          <a class="btn btn-ghost" href="#install">Mac / Linux install</a>
+        </div>
+        <div class="trust">
+          <span><b>epic</b> orchestrator</span>
+          <span><b>12</b> specialists</span>
+          <span><b>60+</b> skills</span>
+          <span><b>0</b> keys in git</span>
+        </div>
       </div>
-      <ol>
-        <li>Install <strong>Node.js LTS</strong> from nodejs.org → restart Command Prompt → check: <code>node -v</code></li>
-        <li>Download <strong>DO_EVERYTHING.bat</strong> (if Windows blocks it: Properties → Unblock, or “More info” → Run anyway)</li>
-        <li>Put it in a folder, e.g. <code>C:\Users\YOU\EpicTechAI</code></li>
-        <li>Double-click <code>DO_EVERYTHING.bat</code></li>
-        <li>When asked, run <code>opencode auth login</code> and paste your API key <strong>only in that window</strong></li>
-        <li>Wait for <code>SUCCESS — http://127.0.0.1:4097/</code> and keep the black window open</li>
-      </ol>
-      <p class="muted" style="margin:12px 0 0">Later: run <code>LAUNCH.bat</code> in the installed folder, or <code>RUN_TUI.bat</code> for terminal-only.</p>
-    </section>
 
-    <!-- MAC / LINUX -->
-    <section class="card" id="unix">
-      <h2>macOS / Linux — one command</h2>
-      <ol>
-        <li>Install <a href="https://opencode.ai/docs" target="_blank" rel="noreferrer">OpenCode</a> and Node if needed</li>
-        <li>Run:</li>
-      </ol>
-      <pre id="unix-cmd">git clone https://github.com/epictechai/epic-tech-ai-agent.git
+      <div class="install-card" id="install">
+        <h2>Install in minutes</h2>
+        <p class="sub">This site doesn’t run the AI. Your machine does. That’s the point.</p>
+
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab on" data-tab="win" role="tab">Windows</button>
+          <button type="button" class="tab" data-tab="unix" role="tab">Mac / Linux</button>
+        </div>
+
+        <div class="panel on" id="panel-win">
+          <ol class="steps">
+            <li><span>Install <a href="https://nodejs.org" target="_blank" rel="noreferrer"><strong>Node.js LTS</strong></a> → new terminal → <span class="mono">node -v</span></span></li>
+            <li><span>Download <strong>DO_EVERYTHING.bat</strong> (Unblock in Properties if Windows warns)</span></li>
+            <li><span>Double-click → when asked: <span class="mono">opencode auth login</span></span></li>
+            <li><span>Open <span class="mono">http://127.0.0.1:4097/</span> · keep the console open</span></li>
+          </ol>
+          <a class="btn btn-primary" style="width:100%;margin-top:16px" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
+            Get DO_EVERYTHING.bat
+          </a>
+        </div>
+
+        <div class="panel" id="panel-unix">
+          <ol class="steps">
+            <li><span>Install <a href="https://opencode.ai/docs" target="_blank" rel="noreferrer"><strong>OpenCode</strong></a> + Node if needed</span></li>
+            <li><span>Paste the commands below in Terminal</span></li>
+            <li><span><span class="mono">opencode auth login</span> with your API key</span></li>
+            <li><span>Browser opens local UI — agent <strong>epic</strong></span></li>
+          </ol>
+          <pre class="cmd" id="unix-cmd">git clone https://github.com/epictechai/epic-tech-ai-agent.git
 cd epic-tech-ai-agent
 chmod +x LAUNCH.sh scripts/*.sh
 opencode auth login
 ./LAUNCH.sh</pre>
-      <div class="row">
-        <button class="btn btn-green" type="button" id="copy-unix">Copy commands</button>
-        <a class="btn btn-ghost" href="https://github.com/epictechai/epic-tech-ai-agent">Open repo</a>
+          <button type="button" class="btn btn-ghost" style="width:100%;margin-top:12px" id="copy-unix">Copy commands</button>
+        </div>
       </div>
-      <p class="muted" id="copy-status"></p>
-    </section>
+    </div>
+  </header>
 
-    <!-- PREREQS -->
-    <section class="card">
-      <h2>Requirements (every OS)</h2>
-      <ul>
-        <li><strong>Node.js 18+</strong> (LTS recommended) — <a href="https://nodejs.org">nodejs.org</a></li>
-        <li><strong>OpenCode CLI</strong> — installer installs the Windows baseline build for you; Mac/Linux: <a href="https://opencode.ai/docs">opencode.ai/docs</a></li>
-        <li><strong>Model API key</strong> — OpenAI or another provider OpenCode supports. Never commit keys. Never paste keys into chat.</li>
-        <li><strong>Disk + network</strong> — first run downloads the repo and npm packages</li>
-      </ul>
-    </section>
-
-    <!-- TROUBLESHOOT -->
-    <section class="card warn" id="fix">
-      <h2>Troubleshooting</h2>
-      <details open>
-        <summary>“Not compatible with the version of Windows”</summary>
-        <p>Use the baseline binary. Run <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a> or full <code>DO_EVERYTHING.bat</code> again. Check: <code>opencode --version</code> prints a version number.</p>
-      </details>
-      <details>
-        <summary>Web UI never opens / “Waiting for server”</summary>
-        <p>Read <code>%TEMP%\epic-web-run.log</code>. Use <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat">RUN_TUI.bat</a> for terminal UI. Ensure nothing else blocks port 4097. Keep the installer window open.</p>
-      </details>
-      <details>
-        <summary>Unexpected server error / no model</summary>
-        <p>Run <code>opencode auth login</code> again. In the UI, pick a model your key can use (e.g. <code>openai/gpt-4o</code>). Confirm billing/credits on the provider.</p>
-      </details>
-      <details>
-        <summary>Windows SmartScreen blocked the .bat</summary>
-        <p>Right-click file → Properties → Unblock → OK. Or click More info → Run anyway. Or clone the repo with git and run <code>windows\DO_EVERYTHING.bat</code>.</p>
-      </details>
-      <details>
-        <summary>Where are the files after install?</summary>
-        <p>Default: <code>C:\Users\YOURNAME\EpicTechAI\epic-tech-ai-agent</code>. Launchers also copy to <code>C:\Users\YOURNAME\EpicTechAI\</code>.</p>
-      </details>
-    </section>
-
-    <section class="card">
-      <h2>What you get</h2>
-      <ul>
-        <li>Local agent <strong>epic</strong> + specialists (build, research, design, …)</li>
-        <li>Skills, docs, MIT license — open source</li>
-        <li>No API keys in the repo — you bring your own</li>
-      </ul>
-      <p class="muted">Optional files: <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/tag/windows-latest">all Windows release assets</a></p>
-    </section>
-
-    <footer>
-      <div>© Epic Tech AI · <a href="license.html">MIT</a> · Not professional advice</div>
-      <div>
-        <a href="terms.html">Terms</a> ·
-        <a href="privacy.html">Privacy</a> ·
-        <a href="aup.html">AUP</a> ·
-        <a href="https://x.com/EpicTechAI">X</a>
-      </div>
-    </footer>
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee">
+      <span><em>epic</em> orchestrates</span>
+      <span>architect · builder · researcher · critic</span>
+      <span><em>system &gt; single model</em></span>
+      <span>your keys · your machine</span>
+      <span>verify before ship</span>
+      <span>MIT open source</span>
+      <span><em>epic</em> orchestrates</span>
+      <span>architect · builder · researcher · critic</span>
+      <span><em>system &gt; single model</em></span>
+      <span>your keys · your machine</span>
+      <span>verify before ship</span>
+      <span>MIT open source</span>
+    </div>
   </div>
+
+  <section class="block" id="system">
+    <div class="section-label">The system</div>
+    <h2 class="section-title">Built to feel unfair.</h2>
+    <p class="section-desc">
+      One chat model is a brain. Epic is brain + hands + process — specialists, skills, memory, and a critic loop before anything ships.
+    </p>
+    <div class="bento">
+      <article class="tile wide">
+        <div class="icon">◈</div>
+        <h3>Multi-agent by default</h3>
+        <p>Route hard work across architect, builder, researcher, critic, designer, counsel, and more — not one generic reply.</p>
+      </article>
+      <article class="tile">
+        <div class="icon">◎</div>
+        <h3>Fully local</h3>
+        <p>Runs on your PC. Files stay yours. No “mystery cloud agent” holding your keys.</p>
+      </article>
+      <article class="tile">
+        <div class="icon">⬡</div>
+        <h3>60+ skills</h3>
+        <p>Research, code, docs, legal drafts, GTM, data — loaded on demand via epic-powers.</p>
+      </article>
+      <article class="tile">
+        <div class="icon">◇</div>
+        <h3>Zero keys in git</h3>
+        <p><span class="mono">opencode auth login</span> only. Secret-scan in the repo. Rotate anything ever pasted in chat.</p>
+      </article>
+      <article class="tile wide">
+        <div class="icon">✦</div>
+        <h3>Open source · MIT</h3>
+        <p>Read the code. Fork it. Audit it. Legal pages, security policy, and install docs included — built to be legitimate.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-label">Why not just ChatGPT?</div>
+    <h2 class="section-title">System beats a single tab.</h2>
+    <div class="install-card" style="padding:8px 8px 4px;margin-bottom:40px">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Single chat model</th><th>Epic Tech AI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Where it runs</td><td>Their cloud</td><td>Your machine</td></tr>
+          <tr><td>Keys</td><td>Their account</td><td>Yours, local auth</td></tr>
+          <tr><td>Work style</td><td>One reply</td><td>Specialists + critic</td></tr>
+          <tr><td>Project memory</td><td>Session chat</td><td>Repo brain files</td></tr>
+          <tr><td>Ship path</td><td>Copy-paste</td><td>Tools, verify, launch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block faq" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Straight answers.</h2>
+    <details>
+      <summary>Does this website run the AI?</summary>
+      <p>No. GitHub Pages is static. The agent runs locally after you install. That’s safer and under your control.</p>
+    </details>
+    <details>
+      <summary>What do I need?</summary>
+      <p>Node.js LTS, OpenCode (Windows installer handles the Win10 baseline binary), and an API key from OpenAI or another supported provider.</p>
+    </details>
+    <details>
+      <summary>“Not compatible with Windows”?</summary>
+      <p>Use DO_EVERYTHING.bat or INSTALL_OPENCODE_WINDOWS.bat — they install the baseline build. Then <span class="mono">opencode --version</span> should print a version.</p>
+    </details>
+    <details>
+      <summary>Web UI won’t open?</summary>
+      <p>Keep the console open. Try RUN_TUI.bat. Check <span class="mono">%TEMP%\epic-web-run.log</span>. Run <span class="mono">opencode auth login</span> again.</p>
+    </details>
+    <details>
+      <summary>Are my keys in the repo?</summary>
+      <p>Never. We scan for secrets. Use local auth only. If you ever pasted a key in chat, revoke it.</p>
+    </details>
+  </section>
+
+  <section class="final-cta" id="get">
+    <h2>Ready when you are.</h2>
+    <p>One installer. Your machine. Come back for the craft — not the hype cycle.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-primary" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">Windows — DO_EVERYTHING.bat</a>
+      <a class="btn btn-ghost" href="https://github.com/epictechai/epic-tech-ai-agent">Star on GitHub</a>
+      <a class="btn btn-ghost" href="download/">All downloads</a>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div>
+      © Epic Tech AI · <a href="license.html">MIT</a> · Not professional advice
+    </div>
+    <div>
+      <a href="guide.html">Guide</a>
+      <a href="docs.html">Docs</a>
+      <a href="whitepaper.html">Whitepaper</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="aup.html">AUP</a>
+      <a href="https://x.com/EpicTechAI">X</a>
+      <a href="mailto:epictechai@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <!-- Three.js r160 UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="assets/hero-3d.js"></script>
   <script>
-    document.getElementById("copy-unix").onclick = async () => {
-      const t = document.getElementById("unix-cmd").innerText;
-      const s = document.getElementById("copy-status");
+    // Tabs
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((t) => t.classList.remove("on"));
+        document.querySelectorAll(".panel").forEach((p) => p.classList.remove("on"));
+        tab.classList.add("on");
+        document.getElementById("panel-" + tab.dataset.tab).classList.add("on");
+      });
+    });
+    // Copy unix
+    document.getElementById("copy-unix").addEventListener("click", async () => {
+      const text = document.getElementById("unix-cmd").innerText;
       try {
-        await navigator.clipboard.writeText(t);
-        s.textContent = "Copied. Paste in Terminal.";
+        await navigator.clipboard.writeText(text);
+        const b = document.getElementById("copy-unix");
+        const old = b.textContent;
+        b.textContent = "Copied ✓";
+        setTimeout(() => (b.textContent = old), 2000);
       } catch {
-        s.textContent = "Select the box and copy manually (Ctrl/Cmd+C).";
+        alert("Copy failed — select the commands manually.");
       }
-    };
+    });
   </script>
 </body>
 </html>
