@@ -1,104 +1,40 @@
 # Epic Tech AI
 
-Local multi-agent stack (OpenCode). **You run it on your machine. You bring the API key.**
+**Your AI agent. On your computer.**  
+Product site: **https://epictechai.github.io/epic-tech-ai-agent/**
 
-| | |
-|---|---|
-| **Install site** | https://epictechai.github.io/epic-tech-ai-agent/ |
-| **Windows installer** | [DO_EVERYTHING.bat](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat) |
-| **Get API keys (Slack)** | https://epictechai.github.io/epic-tech-ai-agent/keys.html |
-| **GitHub** | https://github.com/epictechai/epic-tech-ai-agent |
-| **License** | MIT |
-
----
-
-## Quick start
+## Customers — install (2 clicks)
 
 ### Windows
-1. Install [Node.js LTS](https://nodejs.org) → open a **new** terminal → `node -v`
-2. Download [**DO_EVERYTHING.bat**](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat)
-3. Double-click it (Unblock in file Properties if Windows blocks it)
-4. When prompted: `opencode auth login` (paste key **only there**)
-5. Open **http://127.0.0.1:4097/** — keep the console window open
+1. [Download installer](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat)  
+2. Double-click → when asked, sign in with your API key  
 
-### macOS / Linux
-```bash
-git clone https://github.com/epictechai/epic-tech-ai-agent.git
-cd epic-tech-ai-agent
-chmod +x LAUNCH.sh scripts/*.sh
-# Install OpenCode: https://opencode.ai/docs
-opencode auth login
-./LAUNCH.sh
-```
+Need a key? [Get keys via Slack](https://epictechai.github.io/epic-tech-ai-agent/keys.html)
 
-### Verify
-```bash
-opencode --version
-opencode auth list
-npm run secret-scan    # optional: confirm no secrets in git
-```
+### Mac / Linux
+Open the [install site](https://epictechai.github.io/epic-tech-ai-agent/#start), choose **Mac / Linux**, copy the one-liner, paste in Terminal.
 
----
+## What it is
+Local multi-agent system (not a website chatbot). Your machine, your keys, MIT licensed.
 
-## What this is
-
-- Agent **`epic`** + specialists (build, research, design, ops, …)
-- Skills, slash commands, project memory under `.kortix/`
-- **No API keys in the repository** — use `opencode auth login` or a gitignored `.env`
-- **Need a key through us?** → [Get API keys via Slack](https://epictechai.github.io/epic-tech-ai-agent/keys.html) (`#api-keys`)
-
-This is **not** a hosted chatbot. The GitHub Pages site only documents and links installers.
-
-**Owner:** put your real Slack invite URL in [`docs/assets/community.json`](docs/assets/community.json) (`slack.inviteUrl`). See [`docs/SLACK_SETUP.md`](docs/SLACK_SETUP.md).
-
----
-
-## Repo layout
+## Operators / contributors
+Source and scripts live in this repository for builds and releases.  
+End users should use the **website**, not clone unless they want to.
 
 ```
-DO_EVERYTHING.bat     Windows: install + launch
-LAUNCH.bat / LAUNCH.sh
-windows/              Windows scripts
-docs/                 GitHub Pages site
-.kortix/              agents, skills, config
+docs/          → product website (GitHub Pages)
+windows/       → Windows installers
+.kortix/       → agent runtime
 scripts/secret-scan.sh
-LICENSE · SECURITY.md · .env.example
 ```
 
----
+`npm run secret-scan` — no keys in git.
 
-## Troubleshooting
-
-| Problem | Fix |
-|---------|-----|
-| Not compatible with Windows | [INSTALL_OPENCODE_WINDOWS.bat](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat) |
-| Web UI won’t start | [RUN_TUI.bat](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat) · check `%TEMP%\epic-web-run.log` |
-| No model / server error | `opencode auth login` · pick a model your key supports |
-| SmartScreen blocks .bat | Properties → Unblock · or git clone and run `windows\DO_EVERYTHING.bat` |
-
-Full guide: https://epictechai.github.io/epic-tech-ai-agent/guide.html
-
----
-
-## Docs & legal
-
+## Legal
 [Terms](https://epictechai.github.io/epic-tech-ai-agent/terms.html) ·
 [Privacy](https://epictechai.github.io/epic-tech-ai-agent/privacy.html) ·
-[AUP](https://epictechai.github.io/epic-tech-ai-agent/aup.html) ·
-[Disclaimer](https://epictechai.github.io/epic-tech-ai-agent/disclaimer.html) ·
 [License](LICENSE) ·
 [Security](SECURITY.md)
 
 ---
-
-## After it runs
-
-In the UI, agent **epic**. Try:
-
-```
-/anything hello — what can you do?
-```
-
----
-
-**Epic Tech AI** · [github.com/epictechai](https://github.com/epictechai) · [x.com/EpicTechAI](https://x.com/EpicTechAI) · epictechai@gmail.com
+Epic Tech AI · epictechai@gmail.com · [x.com/EpicTechAI](https://x.com/EpicTechAI)
