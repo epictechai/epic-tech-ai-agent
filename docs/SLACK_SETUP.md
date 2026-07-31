@@ -1,36 +1,32 @@
-# Slack invite setup (owner)
+# Slack setup (owner)
 
-Users who want API keys **through Epic Tech AI** use the site page:
+Users who want API keys **through Epic Tech AI** use:
 
 https://epictechai.github.io/epic-tech-ai-agent/keys.html
 
-## 1. Create a Slack workspace (or use existing)
+## Live channels (Epic Tech HQ)
 
-1. https://slack.com → create workspace **Epic Tech AI** (or your name)
-2. Create channels:
-   - `#api-keys` — key setup requests
-   - `#support` — install help
-3. **Invite link:** Workspace menu → Invite people → Copy invite link  
-   Prefer a link that doesn’t expire soon (or rotate it in config when it does).
+| Channel | URL |
+|---------|-----|
+| API keys | https://epictechhq.slack.com/archives/C0BN49K7L4Q |
+| Support | https://epictechhq.slack.com/archives/C0BN49QLNQG |
 
-## 2. Put the link in the site config
+Configured in `docs/assets/community.json`.
 
-Edit `docs/assets/community.json`:
+## Optional: public invite link
+
+Channel archive links work for people **already in** Epic Tech HQ.
+
+For brand-new users, add a workspace invite:
+
+1. Slack → Workspace menu → Invite people → Copy link  
+2. Set in `docs/assets/community.json`:
 
 ```json
-{
-  "slack": {
-    "inviteUrl": "https://join.slack.com/t/YOUR_WORKSPACE/shared_invite/zt-xxxxx",
-    "channelKeys": "#api-keys",
-    "channelSupport": "#support",
-    "enabled": true
-  }
-}
+"inviteUrl": "https://join.slack.com/t/epictechhq/shared_invite/zt-xxxxx"
 ```
 
-Commit + push to `main`. GitHub Pages will pick it up.
-
-Until `inviteUrl` is a real `join.slack.com` link, the **Get keys** button falls back to **email** (`epictechai@gmail.com`).
+3. Commit + push. The keys page will show **Join Epic Tech HQ on Slack**.
 
 ## 3. How you fulfill requests (ops)
 

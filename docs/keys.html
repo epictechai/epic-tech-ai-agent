@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Get API keys via Slack — Epic Tech AI</title>
-  <meta name="description" content="Request API key help for Epic Tech AI through Slack. Secure setup guidance." />
+  <meta name="description" content="Request API key help for Epic Tech AI in Epic Tech HQ Slack." />
   <meta name="theme-color" content="#03030a" />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #03030a; --ink: #f7f5ff; --muted: #8b87a2; --line: rgba(255,255,255,.08);
-      --violet: #8b5cf6; --violet2: #c4b5fd; --cyan: #22d3ee; --green: #34d399;
-      --slack: #e01e5a; --glass: rgba(12,12,24,.6);
+      --violet2: #c4b5fd; --cyan: #22d3ee; --green: #34d399;
     }
     * { box-sizing: border-box; }
     body {
@@ -48,19 +47,19 @@
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       font-family: inherit; font-weight: 700; font-size: 1rem;
       padding: 16px 22px; border-radius: 14px; border: 0; cursor: pointer;
-      text-decoration: none; transition: .15s;
+      text-decoration: none; transition: .15s; width: 100%; margin: 8px 0;
     }
     .btn-slack {
       background: linear-gradient(135deg, #e01e5a, #4a154b);
       color: #fff; box-shadow: 0 12px 36px rgba(224,30,90,.35);
-      width: 100%; margin: 8px 0;
     }
     .btn-slack:hover { filter: brightness(1.08); color: #fff; }
-    .btn-ghost {
-      background: transparent; border: 1px solid var(--line); color: var(--ink); width: 100%;
+    .btn-soft {
+      background: rgba(255,255,255,.04); border: 1px solid var(--line); color: var(--ink);
     }
+    .btn-soft:hover { border-color: rgba(255,255,255,.2); color: #fff; }
     .warn {
-      border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.08);
+      border: 1px solid rgba(251,191,36,.35); background: rgba(251,191,36,.08);
       color: #fde68a; font-size: .9rem; border-radius: 12px; padding: 14px; margin-top: 16px;
     }
     .warn strong { color: #fbbf24; }
@@ -68,11 +67,13 @@
       font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .82em;
       background: #151522; padding: 2px 6px; border-radius: 5px; color: var(--cyan);
     }
-    .meta { font-size: .85rem; color: var(--muted); margin-top: 20px; }
     .channel {
       display: inline-block; background: rgba(224,30,90,.12); border: 1px solid rgba(224,30,90,.3);
       color: #fda4af; padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: .85rem;
     }
+    .meta { font-size: .85rem; color: var(--muted); margin-top: 12px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -82,100 +83,88 @@
   </div>
 
   <div class="wrap">
-    <h1>Get API keys through Slack</h1>
+    <h1>Get API keys via Slack</h1>
     <p class="lead" id="blurb">
-      Prefer a human path? Join the Epic Tech AI Slack — we’ll help you get model access configured for local install.
+      Message us in <strong style="color:var(--ink)">Epic Tech HQ</strong> Slack. We’ll help you get model access for local install.
     </p>
 
     <div class="card">
-      <h2>How it works</h2>
-      <ol>
-        <li><strong>Join Slack</strong> with the button below</li>
-        <li>Post in <span class="channel" id="ch-keys">#api-keys</span> (or DM the team)</li>
-        <li>Say you’re installing Epic Tech AI locally and need key help</li>
-        <li>We guide you to create a provider key <strong>in your account</strong>, or assist per our access policy</li>
-        <li>You run <code>opencode auth login</code> on your machine — keys stay on your PC</li>
-      </ol>
+      <h2>Open a channel</h2>
+      <p class="meta" style="margin-top:0;margin-bottom:14px">
+        Already in the workspace? These open the right channel. New here? Join Slack first, then come back.
+      </p>
 
-      <a class="btn btn-slack" id="btn-slack" href="#" target="_blank" rel="noopener noreferrer">
-        Join Slack — request keys
+      <div class="row2">
+        <a class="btn btn-slack" id="btn-keys" href="https://epictechhq.slack.com/archives/C0BN49K7L4Q" target="_blank" rel="noopener noreferrer">
+          Open #api-keys
+        </a>
+        <a class="btn btn-soft" id="btn-support" href="https://epictechhq.slack.com/archives/C0BN49QLNQG" target="_blank" rel="noopener noreferrer">
+          Open #support
+        </a>
+      </div>
+
+      <a class="btn btn-soft" id="btn-invite" href="#" style="display:none" target="_blank" rel="noopener noreferrer">
+        Join Epic Tech HQ on Slack
       </a>
-      <a class="btn btn-ghost" id="btn-email" href="mailto:epictechai@gmail.com?subject=API%20key%20help%20for%20Epic%20Tech%20AI">
+      <a class="btn btn-soft" id="btn-email" href="mailto:epictechai@gmail.com?subject=API%20key%20help%20for%20Epic%20Tech%20AI">
         Or email epictechai@gmail.com
       </a>
 
       <div class="warn">
-        <strong>Security:</strong> Never paste live API keys in public Slack channels or GitHub issues.
-        Use DMs only if we ask — or better, create the key yourself while we screen-share/guide.
-        If a key was ever exposed, revoke it immediately.
+        <strong>Security:</strong> Never paste live API keys in public channels.
+        Create the key in your provider account, then run <code>opencode auth login</code> on your PC only.
       </div>
+    </div>
+
+    <div class="card">
+      <h2>What to post</h2>
+      <ol>
+        <li>Open <span class="channel">#api-keys</span></li>
+        <li>Say you’re installing Epic Tech AI locally</li>
+        <li>Include your OS (Windows / Mac / Linux)</li>
+        <li>We’ll guide setup — you keep the key on your machine</li>
+      </ol>
+      <p class="meta">Workspace: <strong id="ws-name" style="color:var(--ink)">Epic Tech HQ</strong> · epictechhq.slack.com</p>
     </div>
 
     <div class="card">
       <h2>Already have a key?</h2>
       <ol>
         <li>Skip Slack</li>
-        <li>Install via <a href="./#install">home → Install</a></li>
-        <li>Run <code>opencode auth login</code> and paste the key only in that terminal</li>
+        <li><a href="./#start">Install on the home page</a> (2 clicks on Windows)</li>
+        <li>Run <code>opencode auth login</code> when the installer asks</li>
       </ol>
     </div>
-
-    <div class="card">
-      <h2>What we can help with</h2>
-      <ul>
-        <li>Which provider to pick (OpenAI, etc.) for local Epic</li>
-        <li>Creating a key in the provider dashboard</li>
-        <li>Windows baseline OpenCode + auth issues</li>
-        <li>Billing / credits questions at a high level</li>
-      </ul>
-      <p class="meta">
-        Channels: <span class="channel" id="ch-keys-2">#api-keys</span>
-        · <span class="channel" id="ch-support">#support</span>
-        · Workspace: <span id="ws-name">Epic Tech AI</span>
-      </p>
-    </div>
-
-    <p class="meta">Questions? <a href="mailto:epictechai@gmail.com">epictechai@gmail.com</a></p>
   </div>
 
   <script>
     (async function () {
-      const fallbackMail = "mailto:epictechai@gmail.com?subject=API%20key%20help%20for%20Epic%20Tech%20AI&body=" +
-        encodeURIComponent("Hi — I'd like help getting API keys set up for Epic Tech AI local install.\n\nOS:\nNode version:\n");
       let cfg = null;
       try {
         cfg = await fetch("assets/community.json", { cache: "no-store" }).then((r) => r.json());
       } catch (_) {}
 
-      const btn = document.getElementById("btn-slack");
-      const email = document.getElementById("btn-email");
-      const blurb = document.getElementById("blurb");
+      const keysUrl = cfg?.slack?.channelKeysUrl || cfg?.slack?.channels?.keys?.url || "https://epictechhq.slack.com/archives/C0BN49K7L4Q";
+      const supportUrl = cfg?.slack?.channelSupportUrl || cfg?.slack?.channels?.support?.url || "https://epictechhq.slack.com/archives/C0BN49QLNQG";
+      const invite = (cfg?.slack?.inviteUrl || "").trim();
+      const looksInvite = invite && /join\.slack\.com/i.test(invite) && !/UPDATE|example|placeholder/i.test(invite);
 
-      if (cfg?.keyRequest?.blurb) blurb.textContent = cfg.keyRequest.blurb;
-      if (cfg?.slack?.channelKeys) {
-        document.getElementById("ch-keys").textContent = cfg.slack.channelKeys;
-        document.getElementById("ch-keys-2").textContent = cfg.slack.channelKeys;
-      }
-      if (cfg?.slack?.channelSupport) document.getElementById("ch-support").textContent = cfg.slack.channelSupport;
+      document.getElementById("btn-keys").href = keysUrl;
+      document.getElementById("btn-support").href = supportUrl;
+
+      if (cfg?.keyRequest?.blurb) document.getElementById("blurb").textContent = cfg.keyRequest.blurb;
       if (cfg?.slack?.workspaceName) document.getElementById("ws-name").textContent = cfg.slack.workspaceName;
 
-      const invite = cfg?.slack?.inviteUrl || "";
-      const enabled = cfg?.slack?.enabled !== false;
-      const looksReal = invite && !/UPDATE_ME|example|placeholder/i.test(invite);
-
-      if (enabled && looksReal) {
-        btn.href = invite;
-        btn.textContent = "Join Slack — request keys";
-      } else {
-        btn.href = fallbackMail;
-        btn.textContent = "Request keys by email (Slack invite not set yet)";
-        btn.classList.remove("btn-slack");
-        btn.classList.add("btn-ghost");
+      const inv = document.getElementById("btn-invite");
+      if (looksInvite) {
+        inv.href = invite;
+        inv.style.display = "inline-flex";
       }
 
       if (cfg?.supportEmail) {
         const body = encodeURIComponent(cfg.keyRequest?.prefillMessage || "Hi — API key help for Epic Tech AI.");
-        email.href = "mailto:" + cfg.supportEmail + "?subject=" + encodeURIComponent("API key help for Epic Tech AI") + "&body=" + body;
+        document.getElementById("btn-email").href =
+          "mailto:" + cfg.supportEmail + "?subject=" + encodeURIComponent("API key help for Epic Tech AI") + "&body=" + body;
       }
     })();
   </script>
