@@ -1,0 +1,16 @@
+{
+  "brand": "Epic Tech AI",
+  "supportEmail": "epictechai@gmail.com",
+  "slack": {
+    "workspaceName": "Epic Tech AI",
+    "inviteUrl": "https://join.slack.com/t/epictechai/shared_invite/zt-UPDATE_ME",
+    "channelKeys": "#api-keys",
+    "channelSupport": "#support",
+    "enabled": true
+  },
+  "keyRequest": {
+    "headline": "Get API keys through us",
+    "blurb": "Don’t want to hunt provider dashboards? Join our Slack, open #api-keys, and we’ll help you get set up (BYO key guidance or assisted access — never paste secrets in public channels).",
+    "prefillMessage": "Hi — I’d like help getting API keys set up for Epic Tech AI local install."
+  }
+}

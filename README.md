@@ -6,6 +6,7 @@ Local multi-agent stack (OpenCode). **You run it on your machine. You bring the 
 |---|---|
 | **Install site** | https://epictechai.github.io/epic-tech-ai-agent/ |
 | **Windows installer** | [DO_EVERYTHING.bat](https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat) |
+| **Get API keys (Slack)** | https://epictechai.github.io/epic-tech-ai-agent/keys.html |
 | **GitHub** | https://github.com/epictechai/epic-tech-ai-agent |
 | **License** | MIT |
 

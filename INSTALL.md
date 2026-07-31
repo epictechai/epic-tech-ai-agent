@@ -5,6 +5,8 @@ Same content as the website, in the repo.
 ## You need
 1. **Node.js LTS** — https://nodejs.org  
 2. **API key** (OpenAI etc.) — never commit it  
+   - DIY: provider dashboard → `opencode auth login`  
+   - Or ask us: https://epictechai.github.io/epic-tech-ai-agent/keys.html (Slack `#api-keys`)  
 3. **Installer** below  
 
 ## Windows
