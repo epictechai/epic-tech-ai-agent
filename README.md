@@ -45,8 +45,11 @@ npm run secret-scan    # optional: confirm no secrets in git
 - Agent **`epic`** + specialists (build, research, design, ops, …)
 - Skills, slash commands, project memory under `.kortix/`
 - **No API keys in the repository** — use `opencode auth login` or a gitignored `.env`
+- **Need a key through us?** → [Get API keys via Slack](https://epictechai.github.io/epic-tech-ai-agent/keys.html) (`#api-keys`)
 
 This is **not** a hosted chatbot. The GitHub Pages site only documents and links installers.
+
+**Owner:** put your real Slack invite URL in [`docs/assets/community.json`](docs/assets/community.json) (`slack.inviteUrl`). See [`docs/SLACK_SETUP.md`](docs/SLACK_SETUP.md).
 
 ---
 
