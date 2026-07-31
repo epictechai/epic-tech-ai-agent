@@ -1,19 +1,16 @@
 Epic Tech AI — Windows
 ======================
 
-ONE file you need:
-  DO_EVERYTHING.bat
+1. Install Node.js LTS: https://nodejs.org
+2. Download DO_EVERYTHING.bat from:
+   https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat
+3. Double-click DO_EVERYTHING.bat
+4. opencode auth login  (when asked)
+5. Open http://127.0.0.1:4097/
 
-Download:
-  https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat
+Also in this folder (full clone):
+  LAUNCH.bat
+  RUN_TUI.bat
+  INSTALL_OPENCODE_WINDOWS.bat
 
-Save to:  C:\Users\epict\EpicTechAI
-Double-click.
-
-Also in this folder (full git clone):
-  LAUNCH.bat                      start agent
-  RUN_TUI.bat                     terminal UI
-  INSTALL_OPENCODE_WINDOWS.bat    fix "not compatible with Windows"
-
-macOS / Linux (repo root):
-  ./LAUNCH.sh
+Site: https://epictechai.github.io/epic-tech-ai-agent/

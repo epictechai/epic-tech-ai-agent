@@ -3,211 +3,75 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Epic Tech AI — Run Fully Local (One-Click)</title>
-  <meta name="description" content="One-click fully local launch for Epic Tech AI super-agent. Clone, run LAUNCH.sh, agent opens on your machine." />
-  <meta property="og:title" content="Epic Tech AI — Run Fully Local" />
-  <meta property="og:description" content="One command. Fully local. Full SOTA agent." />
-  <meta property="og:url" content="https://epictechai.github.io/epic-tech-ai-agent/" />
-  <meta name="theme-color" content="#0a0a0f" />
+  <title>Epic Tech AI — Install Local Agent</title>
+  <meta name="description" content="Install Epic Tech AI on your computer. Windows one-click. Mac/Linux one command. Fully local." />
+  <meta name="theme-color" content="#07070b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #050508;
-      --ink: #f4f2ff;
-      --muted: #9b97b0;
-      --line: #1c1c2a;
-      --violet: #8b5cf6;
-      --violet2: #a78bfa;
-      --cyan: #22d3ee;
-      --green: #34d399;
-      --green2: #059669;
-      --card: #0c0c14;
-      --warn: #fbbf24;
+      --bg: #07070b; --card: #0e0e16; --ink: #f3f1ff; --muted: #9b97b0;
+      --line: #222233; --green: #34d399; --green-d: #059669; --violet: #a78bfa; --warn: #fbbf24; --red: #fb7185;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
     body {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      min-height: 100vh;
-      background:
-        radial-gradient(1000px 500px at 50% -20%, rgba(139,92,246,.28), transparent 55%),
-        radial-gradient(800px 400px at 100% 20%, rgba(34,211,238,.12), transparent 50%),
-        var(--bg);
+      margin: 0; font-family: "IBM Plex Sans", system-ui, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.5;
+      background-image: radial-gradient(900px 400px at 50% -10%, rgba(52,211,153,.12), transparent 55%);
     }
-    a { color: var(--violet2); }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 28px 18px 72px; }
-    header {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 12px; flex-wrap: wrap; margin-bottom: 28px;
+    a { color: var(--violet); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 32px 18px 64px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .brand { font-weight: 700; font-size: 1.1rem; text-decoration: none; color: var(--ink); }
+    .brand span { color: var(--muted); font-weight: 400; font-size: .85rem; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 14px; font-size: .85rem; }
+    nav a:hover { color: var(--ink); }
+    h1 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin: 0 0 10px; letter-spacing: -.02em; }
+    .lead { color: var(--muted); margin: 0 0 24px; max-width: 40rem; }
+    .banner {
+      background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.35);
+      border-radius: 12px; padding: 12px 14px; font-size: .9rem; margin-bottom: 24px;
     }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-    .mark {
-      width: 38px; height: 38px; border-radius: 11px;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
-      box-shadow: 0 0 36px rgba(139,92,246,.5);
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 20px; margin-bottom: 16px;
     }
-    .brand h1 { font-family: Syne, system-ui, sans-serif; font-size: 1.1rem; margin: 0; font-weight: 800; }
-    .brand span { display: block; color: var(--muted); font-size: .68rem; margin-top: 2px; }
-    .nav { display: flex; gap: 12px; flex-wrap: wrap; font-size: .72rem; }
-    .nav a { color: var(--muted); text-decoration: none; }
-    .nav a:hover { color: var(--ink); }
-
-    /* ===== HERO LAUNCH (can't miss) ===== */
-    .launch-hero {
-      border: 2px solid rgba(52,211,153,.45);
-      border-radius: 22px;
-      padding: 28px 24px 24px;
-      background:
-        linear-gradient(180deg, rgba(52,211,153,.1), transparent 42%),
-        linear-gradient(135deg, rgba(139,92,246,.12), transparent 60%),
-        var(--card);
-      box-shadow: 0 0 0 1px rgba(52,211,153,.12), 0 24px 80px rgba(0,0,0,.45);
-      margin-bottom: 28px;
-      position: relative;
-      overflow: hidden;
+    .card h2 { margin: 0 0 12px; font-size: 1.05rem; }
+    .card ol, .card ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .card li { margin: 8px 0; }
+    .card strong { color: var(--ink); }
+    code, pre {
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .82rem;
     }
-    .launch-hero::before {
-      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
-      background: linear-gradient(90deg, var(--green), var(--cyan), var(--violet));
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.4);
-      color: var(--green); font-size: .72rem; font-weight: 600;
-      padding: 6px 12px; border-radius: 999px; margin-bottom: 14px;
-    }
-    .badge i {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
-      box-shadow: 0 0 10px var(--green); display: inline-block;
-    }
-    .launch-hero h2 {
-      font-family: Syne, system-ui, sans-serif;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      font-weight: 800; letter-spacing: -.04em; line-height: 1.08;
-      margin: 0 0 10px;
-    }
-    .launch-hero h2 em {
-      font-style: normal;
-      background: linear-gradient(90deg, var(--green), var(--cyan));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .sub {
-      color: var(--muted); font-size: .88rem; line-height: 1.55;
-      margin: 0 0 22px; max-width: 52ch;
-    }
-
-    .steps {
-      display: grid; gap: 10px; margin-bottom: 20px;
-    }
-    .step {
-      display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start;
-      background: #08080f; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
-    }
-    .num {
-      width: 36px; height: 36px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: .9rem;
-      background: rgba(139,92,246,.2); color: var(--violet2);
-      border: 1px solid rgba(139,92,246,.35);
-    }
-    .step b { display: block; color: var(--ink); font-size: .82rem; margin-bottom: 4px; }
-    .step span { color: var(--muted); font-size: .75rem; line-height: 1.45; }
-    .step a { color: var(--cyan); }
-
-    .os-tabs {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;
-    }
-    @media (max-width: 560px) { .os-tabs { grid-template-columns: 1fr; } }
-    .os-tab {
-      border: 1px solid var(--line); background: #08080f; color: var(--muted);
-      border-radius: 12px; padding: 12px 10px; cursor: pointer; text-align: center;
-      font-family: inherit; font-size: .78rem; transition: .15s;
-    }
-    .os-tab:hover { border-color: var(--violet); color: var(--ink); }
-    .os-tab.active {
-      border-color: var(--green); color: var(--ink);
-      background: rgba(52,211,153,.1);
-      box-shadow: 0 0 0 1px rgba(52,211,153,.25);
-    }
-    .os-tab strong { display: block; font-size: .85rem; margin-bottom: 2px; color: inherit; }
-    .os-tab small { color: var(--muted); font-size: .68rem; }
-
-    .cmd-box {
-      background: #030308; border: 1px solid rgba(52,211,153,.35);
-      border-radius: 14px; padding: 4px; margin-bottom: 12px;
-    }
-    .cmd-box textarea {
-      width: 100%; min-height: 96px; resize: vertical;
-      background: transparent; border: 0; color: var(--green);
-      font-family: inherit; font-size: .78rem; line-height: 1.5;
-      padding: 12px 14px; outline: none;
-    }
-
-    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn {
-      appearance: none; border: 0; cursor: pointer;
-      font-family: inherit; font-weight: 700; font-size: .9rem;
-      padding: 16px 20px; border-radius: 14px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      text-decoration: none; transition: .15s;
-    }
-    .btn-run {
-      flex: 1 1 220px;
-      background: linear-gradient(135deg, #10b981, #059669 50%, #0d9488);
-      color: #04140e;
-      box-shadow: 0 12px 40px rgba(16,185,129,.4);
-      font-size: 1rem; letter-spacing: -.01em;
-    }
-    .btn-run:hover { transform: translateY(-1px); box-shadow: 0 16px 48px rgba(16,185,129,.5); }
-    .btn-run:active { transform: translateY(1px); }
-    .btn-sec {
-      background: transparent; color: var(--ink);
-      border: 1px solid var(--line); font-weight: 600; font-size: .8rem;
-    }
-    .btn-sec:hover { border-color: var(--violet); background: rgba(139,92,246,.08); }
-
-    .toast {
-      margin-top: 12px; min-height: 1.3em; font-size: .8rem; font-weight: 600;
-    }
-    .toast.ok { color: var(--green); }
-    .toast.err { color: #fb7185; }
-
-    .note {
-      margin-top: 16px; padding: 12px 14px; border-radius: 12px;
-      background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.3);
-      color: #fde68a; font-size: .75rem; line-height: 1.5;
-    }
-
-    .downloads {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 8px; margin-top: 14px;
-    }
-    .dl {
-      display: block; text-align: center; text-decoration: none;
-      border: 1px solid var(--line); border-radius: 10px; padding: 10px 8px;
-      color: var(--ink); font-size: .72rem; background: #08080f;
-    }
-    .dl:hover { border-color: var(--cyan); }
-    .dl b { display: block; color: var(--cyan); margin-bottom: 2px; }
-
-    .after {
-      margin-top: 28px; border: 1px solid var(--line); border-radius: 16px;
-      padding: 18px; background: var(--card);
-    }
-    .after h3 {
-      font-family: Syne, system-ui, sans-serif; margin: 0 0 10px; font-size: 1rem;
-    }
+    code { background: #151522; padding: 2px 6px; border-radius: 5px; color: #c4b5fd; }
     pre {
-      margin: 0; padding: 14px; border-radius: 12px; overflow: auto;
-      background: #030308; border: 1px solid var(--line);
-      color: #c4b5fd; font-size: .75rem; line-height: 1.5;
+      background: #05050a; border: 1px solid var(--line); border-radius: 10px;
+      padding: 12px 14px; overflow: auto; color: #d1fae5; margin: 10px 0 0;
     }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; font-weight: 700; border-radius: 12px;
+      padding: 14px 18px; margin: 6px 8px 6px 0; font-size: .95rem;
+    }
+    .btn-green {
+      background: linear-gradient(135deg, var(--green), var(--green-d));
+      color: #042f1a; box-shadow: 0 10px 30px rgba(16,185,129,.3);
+    }
+    .btn-ghost {
+      border: 1px solid var(--line); color: var(--ink); background: transparent;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 4px; margin: 12px 0; }
+    .muted { color: var(--muted); font-size: .85rem; }
+    .warn { border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.08); }
+    .warn strong { color: var(--warn); }
+    details { border-top: 1px solid var(--line); padding: 10px 0; }
+    details:first-of-type { border-top: 0; }
+    summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+    details p, details li { color: var(--muted); font-size: .9rem; }
     footer {
-      margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line);
-      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-      color: var(--muted); font-size: .7rem;
+      margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line);
+      font-size: .8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px 16px; justify-content: space-between;
     }
     footer a { color: var(--muted); }
   </style>
@@ -215,184 +79,134 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="brand" href="./">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <h1>Epic Tech AI</h1>
-          <span>fully local super-agent</span>
-        </div>
-      </a>
-      <nav class="nav">
-        <a href="run.html"><strong style="color:var(--green)">Run local</strong></a>
-        <a href="docs.html">Docs</a>
+      <a class="brand" href="./">Epic Tech AI <span>· local agent</span></a>
+      <nav>
+        <a href="download/">Download</a>
         <a href="guide.html">Guide</a>
+        <a href="docs.html">Docs</a>
         <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
       </nav>
     </header>
 
-    <!-- ========== CAN'T MISS: FULLY LOCAL ONE-CLICK ========== -->
-    <section class="launch-hero" id="run">
-      <div class="badge"><i></i> FULLY LOCAL · runs on YOUR machine · not in the cloud</div>
-      <h2>One-click launch<br /><em>fully local agent</em></h2>
-      <p class="sub">
-        This website cannot run the AI in your browser (no API keys on github.io).
-        It gives you the <strong style="color:var(--ink)">exact local command</strong>.
-        Paste once → Epic opens on your computer with full tools.
-      </p>
+    <h1>Install the agent on your computer</h1>
+    <p class="lead">
+      This website does <strong style="color:var(--ink)">not</strong> run the AI in your browser.
+      It gives you a clear local install. The agent runs on <strong style="color:var(--ink)">your machine</strong> with <strong style="color:var(--ink)">your API key</strong>.
+    </p>
 
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <div>
-            <b>Install OpenCode once</b>
-            <span>
-              macOS/Linux:
-              <code style="color:var(--cyan)">curl -fsSL https://opencode.ai/install | bash</code>
-              · then set a model provider (<code>opencode providers</code>).
-              <a href="https://opencode.ai/docs" target="_blank" rel="noreferrer">Docs</a>
-            </span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <div>
-            <b>Copy the fully-local launch command</b>
-            <span>Pick your OS → hit the big green button → paste in Terminal / PowerShell.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <div>
-            <b>Agent starts on localhost</b>
-            <span><code>./LAUNCH.sh</code> opens the Epic web UI (default agent <strong style="color:var(--ink)">epic</strong>) on your machine.</span>
-          </div>
-        </div>
+    <div class="banner">
+      <strong>You need 3 things:</strong>
+      (1) Node.js LTS &nbsp;·&nbsp;
+      (2) an API key (OpenAI or other) &nbsp;·&nbsp;
+      (3) the installer below
+    </div>
+
+    <!-- WINDOWS -->
+    <section class="card" id="windows">
+      <h2>Windows — one file</h2>
+      <div class="row">
+        <a class="btn btn-green" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
+          Download DO_EVERYTHING.bat
+        </a>
+        <a class="btn btn-ghost" href="https://nodejs.org">Get Node.js LTS</a>
       </div>
+      <ol>
+        <li>Install <strong>Node.js LTS</strong> from nodejs.org → restart Command Prompt → check: <code>node -v</code></li>
+        <li>Download <strong>DO_EVERYTHING.bat</strong> (if Windows blocks it: Properties → Unblock, or “More info” → Run anyway)</li>
+        <li>Put it in a folder, e.g. <code>C:\Users\YOU\EpicTechAI</code></li>
+        <li>Double-click <code>DO_EVERYTHING.bat</code></li>
+        <li>When asked, run <code>opencode auth login</code> and paste your API key <strong>only in that window</strong></li>
+        <li>Wait for <code>SUCCESS — http://127.0.0.1:4097/</code> and keep the black window open</li>
+      </ol>
+      <p class="muted" style="margin:12px 0 0">Later: run <code>LAUNCH.bat</code> in the installed folder, or <code>RUN_TUI.bat</code> for terminal-only.</p>
+    </section>
 
-      <div class="os-tabs" id="os-tabs" role="tablist">
-        <button type="button" class="os-tab active" data-os="unix" role="tab">
-          <strong>macOS / Linux</strong>
-          <small>Terminal · ./LAUNCH.sh</small>
-        </button>
-        <button type="button" class="os-tab" data-os="mac" role="tab">
-          <strong>macOS double-click</strong>
-          <small>LAUNCH.command</small>
-        </button>
-        <button type="button" class="os-tab" data-os="win" role="tab">
-          <strong>Windows</strong>
-          <small>LAUNCH.bat / PowerShell</small>
-        </button>
+    <!-- MAC / LINUX -->
+    <section class="card" id="unix">
+      <h2>macOS / Linux — one command</h2>
+      <ol>
+        <li>Install <a href="https://opencode.ai/docs" target="_blank" rel="noreferrer">OpenCode</a> and Node if needed</li>
+        <li>Run:</li>
+      </ol>
+      <pre id="unix-cmd">git clone https://github.com/epictechai/epic-tech-ai-agent.git
+cd epic-tech-ai-agent
+chmod +x LAUNCH.sh scripts/*.sh
+opencode auth login
+./LAUNCH.sh</pre>
+      <div class="row">
+        <button class="btn btn-green" type="button" id="copy-unix">Copy commands</button>
+        <a class="btn btn-ghost" href="https://github.com/epictechai/epic-tech-ai-agent">Open repo</a>
       </div>
+      <p class="muted" id="copy-status"></p>
+    </section>
 
-      <div class="cmd-box">
-        <textarea id="launch-cmd" readonly spellcheck="false"></textarea>
-      </div>
+    <!-- PREREQS -->
+    <section class="card">
+      <h2>Requirements (every OS)</h2>
+      <ul>
+        <li><strong>Node.js 18+</strong> (LTS recommended) — <a href="https://nodejs.org">nodejs.org</a></li>
+        <li><strong>OpenCode CLI</strong> — installer installs the Windows baseline build for you; Mac/Linux: <a href="https://opencode.ai/docs">opencode.ai/docs</a></li>
+        <li><strong>Model API key</strong> — OpenAI or another provider OpenCode supports. Never commit keys. Never paste keys into chat.</li>
+        <li><strong>Disk + network</strong> — first run downloads the repo and npm packages</li>
+      </ul>
+    </section>
 
-      <div class="btn-row">
-        <button type="button" class="btn btn-run" id="btn-copy-run">
-          Copy fully-local launch command
-        </button>
-        <a class="btn btn-sec" href="https://github.com/epictechai/epic-tech-ai-agent/archive/refs/heads/main.zip">Download ZIP</a>
-        <a class="btn btn-sec" href="https://github.com/epictechai/epic-tech-ai-agent">Open GitHub</a>
-      </div>
-      <div class="toast" id="toast" aria-live="polite"></div>
+    <!-- TROUBLESHOOT -->
+    <section class="card warn" id="fix">
+      <h2>Troubleshooting</h2>
+      <details open>
+        <summary>“Not compatible with the version of Windows”</summary>
+        <p>Use the baseline binary. Run <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a> or full <code>DO_EVERYTHING.bat</code> again. Check: <code>opencode --version</code> prints a version number.</p>
+      </details>
+      <details>
+        <summary>Web UI never opens / “Waiting for server”</summary>
+        <p>Read <code>%TEMP%\epic-web-run.log</code>. Use <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat">RUN_TUI.bat</a> for terminal UI. Ensure nothing else blocks port 4097. Keep the installer window open.</p>
+      </details>
+      <details>
+        <summary>Unexpected server error / no model</summary>
+        <p>Run <code>opencode auth login</code> again. In the UI, pick a model your key can use (e.g. <code>openai/gpt-4o</code>). Confirm billing/credits on the provider.</p>
+      </details>
+      <details>
+        <summary>Windows SmartScreen blocked the .bat</summary>
+        <p>Right-click file → Properties → Unblock → OK. Or click More info → Run anyway. Or clone the repo with git and run <code>windows\DO_EVERYTHING.bat</code>.</p>
+      </details>
+      <details>
+        <summary>Where are the files after install?</summary>
+        <p>Default: <code>C:\Users\YOURNAME\EpicTechAI\epic-tech-ai-agent</code>. Launchers also copy to <code>C:\Users\YOURNAME\EpicTechAI\</code>.</p>
+      </details>
+    </section>
 
-      <div class="note">
-        <strong>Why not a browser “Run” button?</strong>
-        A static github.io page cannot hold your model API keys or run shell/tools.
-        Fully local = you keep keys, files, and power on your machine. That is intentional and safer.
-      </div>
-
-            <div class="note" style="border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.08);color:var(--cyan);margin-top:18px">
-        <strong style="color:var(--ink)">Windows:</strong>
-        Download <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat" style="color:#fff;text-decoration:underline"><strong>DO_EVERYTHING.bat</strong></a>
-        then double-click. Folder tip: <code style="color:var(--violet2)">C:\Users\epict\EpicTechAI</code>.
-        <a href="download/" style="color:#fff">download page</a>
-      </div>
-
-      <div class="downloads">
-        <a class="dl" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat"><b>DO_EVERYTHING.bat</b>Windows one-click</a>
-        <a class="dl" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/LAUNCH.bat"><b>LAUNCH.bat</b>run only</a>
-        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.sh"><b>LAUNCH.sh</b>Mac/Linux</a>
-        <a class="dl" href="https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/LAUNCH.command"><b>LAUNCH.command</b>macOS</a>
-      </div>
-
-    <section class="after">
-      <h3>After it launches — full power</h3>
-      <pre>/anything &lt;your mission&gt;
-./LAUNCH.sh doctor          # health check
-./LAUNCH.sh tui             # terminal UI
-npm start                   # same as ./LAUNCH.sh</pre>
+    <section class="card">
+      <h2>What you get</h2>
+      <ul>
+        <li>Local agent <strong>epic</strong> + specialists (build, research, design, …)</li>
+        <li>Skills, docs, MIT license — open source</li>
+        <li>No API keys in the repo — you bring your own</li>
+      </ul>
+      <p class="muted">Optional files: <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/tag/windows-latest">all Windows release assets</a></p>
     </section>
 
     <footer>
-      <div>© 2025–2026 Epic Tech AI · <a href="license.html">MIT</a> · Not professional advice</div>
+      <div>© Epic Tech AI · <a href="license.html">MIT</a> · Not professional advice</div>
       <div>
         <a href="terms.html">Terms</a> ·
         <a href="privacy.html">Privacy</a> ·
         <a href="aup.html">AUP</a> ·
-        <a href="docs.html">Docs</a>
+        <a href="https://x.com/EpicTechAI">X</a>
       </div>
     </footer>
   </div>
-
   <script>
-    const REPO = "https://github.com/epictechai/epic-tech-ai-agent.git";
-    const CMDS = {
-      unix:
-        "git clone " + REPO + " && cd epic-tech-ai-agent && chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh && ./LAUNCH.sh",
-      mac:
-        "git clone " + REPO + " && cd epic-tech-ai-agent && chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh && open LAUNCH.command",
-      win:
-        "mkdir \"%USERPROFILE%\\EpicTechAI\" 2>nul & cd /d \"%USERPROFILE%\\EpicTechAI\" & curl -L -o SETUP_AND_LAUNCH.bat https://raw.githubusercontent.com/epictechai/epic-tech-ai-agent/main/SETUP_AND_LAUNCH.bat & SETUP_AND_LAUNCH.bat",
-    };
-
-    const ta = document.getElementById("launch-cmd");
-    const toast = document.getElementById("toast");
-    let current = "unix";
-
-    function detectOs() {
-      const ua = navigator.userAgent || "";
-      if (/Windows/i.test(ua)) return "win";
-      if (/Mac/i.test(ua)) return "mac";
-      return "unix";
-    }
-
-    function setOs(os) {
-      current = os;
-      ta.value = CMDS[os];
-      document.querySelectorAll(".os-tab").forEach((el) => {
-        el.classList.toggle("active", el.dataset.os === os);
-      });
-    }
-
-    async function copyRun() {
-      const text = CMDS[current];
+    document.getElementById("copy-unix").onclick = async () => {
+      const t = document.getElementById("unix-cmd").innerText;
+      const s = document.getElementById("copy-status");
       try {
-        await navigator.clipboard.writeText(text);
-        toast.textContent = "Copied. Paste in your terminal — agent runs fully local.";
-        toast.className = "toast ok";
+        await navigator.clipboard.writeText(t);
+        s.textContent = "Copied. Paste in Terminal.";
       } catch {
-        ta.focus();
-        ta.select();
-        try {
-          document.execCommand("copy");
-          toast.textContent = "Copied. Paste in your terminal.";
-          toast.className = "toast ok";
-        } catch {
-          toast.textContent = "Select the command box and copy manually (Ctrl/Cmd+C).";
-          toast.className = "toast err";
-        }
+        s.textContent = "Select the box and copy manually (Ctrl/Cmd+C).";
       }
-    }
-
-    document.getElementById("os-tabs").addEventListener("click", (e) => {
-      const btn = e.target.closest(".os-tab");
-      if (btn) setOs(btn.dataset.os);
-    });
-    document.getElementById("btn-copy-run").addEventListener("click", copyRun);
-
-    setOs(detectOs());
+    };
   </script>
 </body>
 </html>

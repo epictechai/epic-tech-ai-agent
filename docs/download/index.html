@@ -3,39 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Download — Epic Tech AI (Windows)</title>
+  <title>Download — Epic Tech AI</title>
   <style>
-    body { font-family: system-ui, sans-serif; background: #050508; color: #f2f0ff;
-      max-width: 520px; margin: 0 auto; padding: 40px 18px; text-align: center; }
-    h1 { margin: 0 0 10px; font-size: 1.75rem; }
-    p { color: #9b97b0; line-height: 1.55; }
+    body { font-family: system-ui, sans-serif; background: #07070b; color: #f3f1ff; max-width: 520px; margin: 0 auto; padding: 40px 18px; }
+    h1 { font-size: 1.6rem; margin: 0 0 8px; }
+    p { color: #9b97b0; line-height: 1.5; }
     .big {
-      display: block; margin: 28px 0; padding: 26px 18px; border-radius: 18px;
-      text-decoration: none; font-weight: 900; font-size: 1.2rem;
-      background: linear-gradient(135deg, #10b981, #059669); color: #04140e;
-      box-shadow: 0 16px 50px rgba(16,185,129,.4);
+      display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 1.15rem;
+      padding: 22px; border-radius: 16px; margin: 24px 0;
+      background: linear-gradient(135deg, #34d399, #059669); color: #042f1a;
     }
-    .big:hover { filter: brightness(1.05); }
-    a.sec { color: #22d3ee; display: inline-block; margin: 8px 12px; }
-    ol { text-align: left; color: #c4b5fd; line-height: 1.75; }
-    code { background: #151522; padding: 2px 6px; border-radius: 6px; color: #a78bfa; }
+    a.f { display: block; color: #22d3ee; margin: 10px 0; }
+    ol { color: #c4b5fd; line-height: 1.7; }
+    code { background: #151522; padding: 2px 6px; border-radius: 5px; color: #a78bfa; }
   </style>
 </head>
 <body>
-  <h1>Windows download</h1>
-  <p>One file. Fixes OpenCode on Windows 10. Installs Epic. Launches local.</p>
+  <h1>Download</h1>
+  <p>Local install only. This page does not run the agent in the browser.</p>
+
   <a class="big" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">
-    Download DO_EVERYTHING.bat
+    Windows: DO_EVERYTHING.bat
   </a>
+
   <ol>
-    <li>Save to <code>C:\Users\epict\EpicTechAI</code></li>
-    <li>Double-click <code>DO_EVERYTHING.bat</code></li>
-    <li>If asked: <code>opencode auth login</code> (paste key only there)</li>
+    <li>Install <a href="https://nodejs.org" style="color:#a78bfa">Node.js LTS</a> first</li>
+    <li>Save the file → double-click</li>
+    <li><code>opencode auth login</code> when asked</li>
   </ol>
-  <p>
-    <a class="sec" href="https://github.com/epictechai/epic-tech-ai-agent/releases/tag/windows-latest">All release files</a>
-    <a class="sec" href="../">Home</a>
-    <a class="sec" href="../guide.html">Guide</a>
-  </p>
+
+  <p><strong>Also</strong></p>
+  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/LAUNCH.bat">LAUNCH.bat</a>
+  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/RUN_TUI.bat">RUN_TUI.bat</a>
+  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a>
+  <a class="f" href="https://github.com/epictechai/epic-tech-ai-agent">Full source (git clone)</a>
+
+  <p style="margin-top:28px"><a href="../" style="color:#9b97b0">← Install home</a></p>
 </body>
 </html>

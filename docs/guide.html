@@ -3,98 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>User Guide — Epic Tech AI</title>
-  <meta name="description" content="User guide: install and run the Epic Tech AI super-agent." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <title>Install guide — Epic Tech AI</title>
   <link rel="stylesheet" href="assets/site.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="wrap">
     <header class="site">
-      <a class="brand" href="./">
-        <div class="mark" aria-hidden="true"></div>
-        <div><h1>Epic Tech AI</h1><span>user guide</span></div>
-      </a>
+      <a class="brand" href="./"><div class="mark"></div><div><h1>Epic Tech AI</h1><span>install guide</span></div></a>
       <nav class="nav">
-        <a href="./">Launch</a>
-        <a href="docs.html">Docs</a>
-        <a href="whitepaper.html">Whitepaper</a>
+        <a href="./">Install</a>
+        <a href="download/">Download</a>
         <a href="https://github.com/epictechai/epic-tech-ai-agent">GitHub</a>
       </nav>
     </header>
 
-    <h2>User guide</h2>
-    <p class="meta">Install · launch · commands · safety · last updated 26 July 2026</p>
+    <h2>Local install guide</h2>
+    <p class="meta">Clear path for any user · last updated 2026-07-26</p>
 
-    <h3>1. Requirements</h3>
-    <ul>
-      <li><a href="https://opencode.ai/docs">OpenCode</a> CLI on your PATH</li>
-      <li>A model provider configured (<code>opencode providers</code> or Machine/Kortix gateway)</li>
-      <li>Git, and optionally bun or npm for tool dependencies</li>
-    </ul>
-
-    <h3>2. Install &amp; one-click launch (fully local)</h3>
     <div class="notice">
-      <strong>Fastest path:</strong> open
-      <a href="./#run">epictechai.github.io/epic-tech-ai-agent/#run</a>,
-      click the big green <strong>Copy fully-local launch command</strong>, paste in Terminal.
+      The agent runs <strong>on your computer</strong>. The website only hosts docs and download links.
+      You must provide a model API key. Keys are never stored in the git repo.
     </div>
-    <pre># --- ONE LINE (macOS / Linux) ---
-git clone https://github.com/epictechai/epic-tech-ai-agent.git && cd epic-tech-ai-agent && chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh && ./LAUNCH.sh
 
-# --- OR step by step ---
-git clone https://github.com/epictechai/epic-tech-ai-agent.git
+    <h3>1. Prerequisites</h3>
+    <ul>
+      <li>Node.js 18+ LTS — <a href="https://nodejs.org">nodejs.org</a> → then <code>node -v</code></li>
+      <li>Internet (first install downloads packages)</li>
+      <li>API key from OpenAI or another OpenCode-supported provider</li>
+    </ul>
+
+    <h3>2. Windows</h3>
+    <ol>
+      <li>Download <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/DO_EVERYTHING.bat">DO_EVERYTHING.bat</a></li>
+      <li>Save to e.g. <code>C:\Users\YOU\EpicTechAI</code></li>
+      <li>Double-click (Unblock in Properties if SmartScreen blocks)</li>
+      <li>Complete <code>opencode auth login</code> when prompted</li>
+      <li>Open <code>http://127.0.0.1:4097/</code> — leave the console window open</li>
+    </ol>
+    <p>Installed app path (typical): <code>C:\Users\YOU\EpicTechAI\epic-tech-ai-agent</code></p>
+
+    <h3>3. macOS / Linux</h3>
+    <pre>git clone https://github.com/epictechai/epic-tech-ai-agent.git
 cd epic-tech-ai-agent
-chmod +x LAUNCH.sh LAUNCH.command scripts/*.sh
-./LAUNCH.sh                 # opens local web UI → agent "epic"
+chmod +x LAUNCH.sh scripts/*.sh
+# install OpenCode: https://opencode.ai/docs
+opencode auth login
+./LAUNCH.sh</pre>
 
-# macOS Finder: double-click LAUNCH.command
-# Windows: double-click LAUNCH.bat  (or powershell -File LAUNCH.ps1)
-# npm start                 # same as ./LAUNCH.sh</pre>
-    <p>Prerequisite once: <a href="https://opencode.ai/docs">OpenCode</a> + a model provider (<code>opencode providers</code>).</p>
+    <h3>4. Verify</h3>
+    <pre>opencode --version
+opencode auth list
+# browser: http://127.0.0.1:4097/  or  RUN_TUI.bat / ./LAUNCH.sh tui</pre>
 
-
-    <h3>3. Health check</h3>
-    <pre>./LAUNCH.sh doctor
-# expects: config OK, default agent epic, skills listed</pre>
-
-    <h3>4. Full-power commands</h3>
-    <pre>/anything &lt;mission&gt;     # full routing
-/build /research /design /write /analyze
-/legal /create /sell /site /ops /ship /supercharge</pre>
-
-    <h3>5. Specialists</h3>
-    <p>Spawn via the task tool or @ mentions when supported: architect, builder, researcher, critic, ops, designer, writer, analyst, counsel, creator, seller, product.</p>
-
-    <h3>6. Skills that matter</h3>
+    <h3>5. Daily use</h3>
     <ul>
-      <li><code>epic-os</code> — mission loop</li>
-      <li><code>epic-powers</code> — full skill matrix</li>
-      <li><code>epic-frontier</code> — beat solo-model failure modes</li>
-      <li>Domain skills under <code>GENERAL-KNOWLEDGE-WORKER/</code></li>
+      <li>Windows: <code>LAUNCH.bat</code> or <code>RUN_TUI.bat</code></li>
+      <li>Mac/Linux: <code>./LAUNCH.sh</code></li>
+      <li>In UI: agent <strong>epic</strong> · try <code>/anything hello</code></li>
     </ul>
 
-    <h3>7. Safety (required reading)</h3>
+    <h3>6. Troubleshooting</h3>
     <ul>
-      <li><a href="aup.html">Acceptable Use Policy</a> — no malware, crime, child exploitation</li>
-      <li><a href="disclaimer.html">Disclaimer</a> — AI is not professional advice</li>
-      <li>Never commit API keys; use provider dashboards / Executor</li>
-      <li>Human-defined pricing for any Stripe/Checkout flows</li>
-      <li>Supervise destructive git and production actions</li>
+      <li><strong>Not compatible with Windows</strong> → <a href="https://github.com/epictechai/epic-tech-ai-agent/releases/download/windows-latest/INSTALL_OPENCODE_WINDOWS.bat">INSTALL_OPENCODE_WINDOWS.bat</a></li>
+      <li><strong>Server error / no model</strong> → <code>opencode auth login</code> · pick a model your key supports</li>
+      <li><strong>Web won’t start</strong> → <code>RUN_TUI.bat</code> · check <code>%TEMP%\epic-web-run.log</code></li>
+      <li><strong>Secrets</strong> → never commit <code>.env</code> · run <code>npm run secret-scan</code> in the repo</li>
     </ul>
 
-    <h3>8. Memory</h3>
-    <p>Project brain lives in <code>.kortix/memory/</code>. Durable facts only—no secrets or PII.</p>
-
-    <h3>9. Support</h3>
-    <p>epictechai@gmail.com · <a href="https://github.com/epictechai/epic-tech-ai-agent/issues">GitHub Issues</a> (non-security) · security via <a href="https://github.com/epictechai/epic-tech-ai-agent/blob/main/SECURITY.md">SECURITY.md</a></p>
-
-    <p><a class="btn btn-primary" href="./">Back to launcher</a></p>
-
+    <p><a class="btn btn-primary" href="./">Back to install</a></p>
     <footer class="site">
-      <div>© <span data-year>2026</span> Epic Tech AI · <a href="license.html">MIT</a></div>
+      <div>© Epic Tech AI · <a href="license.html">MIT</a></div>
       <div><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></div>
     </footer>
   </div>

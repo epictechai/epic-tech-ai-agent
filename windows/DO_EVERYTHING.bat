@@ -8,7 +8,9 @@ REM ################################################################
 title EPIC TECH AI — DO EVERYTHING
 color 0A
 
-set "DEST=C:\Users\epict\EpicTechAI"
+REM Install under the current user's profile (any Windows user)
+set "DEST=%USERPROFILE%\EpicTechAI"
+if not defined USERPROFILE set "DEST=%CD%\EpicTechAI"
 set "APP=%DEST%\epic-tech-ai-agent"
 set "REPO_ZIP=https://github.com/epictechai/epic-tech-ai-agent/archive/refs/heads/main.zip"
 set "LOG=%TEMP%\epic-do-everything.log"
